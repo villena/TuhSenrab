@@ -5,7 +5,7 @@
 #include "coordenada.h"
 #include "cuerpo.h"
 
-#using namespace std;
+using namespace std;
 
 class BHNode{
 	private:

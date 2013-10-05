@@ -4,7 +4,7 @@
 #include <iostream>
 #include "coordenada.h"
 
-#using namespace std;
+using namespace std;
 
 /*
  * Clase que representa un cuerpo en el espacio. Tiene su

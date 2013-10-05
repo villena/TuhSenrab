@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#using namespace std;
+using namespace std;
 
 /*
  * Esta clase representa una coordenada 2D con sus
@@ -25,7 +25,7 @@ class Coordenada{
 
 		bool operator==(const Coordenada &); //Sobrecarga operador igualdad.
 
-		bool operator!=(const Coorndeada &); //Sobrecarga operador desigualdad.
+		bool operator!=(const Coordenada &); //Sobrecarga operador desigualdad.
 
 		int getX(); //Getter de la componente 'x'.
 
