@@ -78,3 +78,11 @@ float Coordenada::getX() const{
 float Coordenada::getY() const{
 	return y;
 }
+
+// --------------------------------------------------- //
+
+ostream & operator<<(ostream &op, const Coordenada &coord){
+	op << "(" << coord.getX() << ", " << coord.getY() << ")";
+
+	return op;
+}

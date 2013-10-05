@@ -25,14 +25,15 @@ class BHNode{
 		BHNode *hijosCuadrante[4]; //Punteros a los 0 o 4 hijos que tiene un nodo.
 		Cuerpo *cuerpoInterior; //Puntero Cuerpo contenido en este cuadrante.
 
-		Coordenada calculaCentro(); //Calcula el centro del cuadrante.
+
+		void calculaCentro(Coordenada &); //Calcula el centro del cuadrante.
 
 		bool estaDentro(Coordenada); //Calcula si la coordenad está dentro del cuadrante.
 
 	public:
 		BHNode(); //Constructor por defecto.
 
-		BHNode(Coordenada, Coordenada, BHNode *); //Constructor con las esquinas y el padre.
+		BHNode(Coordenada, Coordenada, BHNode &); //Constructor con las esquinas y el padre.
 
 		~BHNode(); //Destructor.
 

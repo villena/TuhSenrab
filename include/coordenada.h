@@ -32,6 +32,8 @@ class Coordenada{
 		float getX() const; //Getter de la componente 'x'.
 
 		float getY() const; //Getter de la componente 'y'.
+
+		friend ostream & operator<<(ostream &, const Coordenada &); //Sobrecarga operador salida.
 };
 
 #endif

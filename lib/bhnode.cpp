@@ -25,14 +25,14 @@ BHNode::BHNode(){
 
 // --------------------------------------------------- //
 
-BHNode::BHNode(Coordenada infIzq, Coordenada supDer, BHNode *padre){
+BHNode::BHNode(Coordenada infIzq, Coordenada supDer, BHNode &padre){
 	masa=0.0;
 	centroMasa=Coordenada();
 	esqInfIzq=infIzq;
 	esqSupDer=supDer;
-	centroCuadrante=calculaCentro();
+	this->calculaCentro(centroCuadrante);
 	numCuerpos=0;
-	nodoPadre=padre;
+	nodoPadre=&padre;
 	cuerpoInterior=NULL;
 
 	for(int i=0; i<4; i++)
@@ -197,13 +197,13 @@ void BHNode::expandirNodo(){
 // --------------------------------------------------- //
 // --------------------------------------------------- //
 
-Coordenada BHNode::calculaCentro(){
+void BHNode::calculaCentro(Coordenada &coord){ 
 	float compX, compY;
 
-	compX=esqSupDer.getX()-esqInfIzq.getX();
-	compY=esqSupDer.getY()-esqInfIzq.getY();
+	compX=(esqSupDer.getX()-esqInfIzq.getX())/2;
+	compY=(esqSupDer.getY()-esqInfIzq.getY())/2;
 
-	return Coordenada(compX, compY);
+	coord=Coordenada(compX, compY);
 }
 
 // --------------------------------------------------- //
