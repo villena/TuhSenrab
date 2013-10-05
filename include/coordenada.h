@@ -23,6 +23,8 @@ class Coordenada{
 
 		~Coordenada(); //Destructor.
 
+		Coordenada & operator=(const Coordenada &); //Sobrecarga operador asignación.
+
 		bool operator==(const Coordenada &); //Sobrecarga operador igualdad.
 
 		bool operator!=(const Coordenada &); //Sobrecarga operador desigualdad.

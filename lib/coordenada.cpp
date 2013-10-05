@@ -33,6 +33,17 @@ Coordenada::~Coordenada(){
 
 // --------------------------------------------------- //
 
+Coordenada & Coordenada::operator=(const Coordenada &coord){
+	if(this!=&coord){
+		x=coord.getX();
+		y=coord.getY();
+	}
+
+	return *this;
+}
+
+// --------------------------------------------------- //
+
 bool Coordenada::operator==(const Coordenada &coord){
 	if(x==coord.getX() && y==coord.getY())
 		return true;

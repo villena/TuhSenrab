@@ -10,6 +10,7 @@ int main(void){
 	Coordenada coord1;
 	Coordenada coord2(4, 5);
 	Coordenada coord3(coord2);
+	Coordenada coord4=coord1;
 
 	cout << "Constructor por defecto." << endl;
 	cout << "Coord1.x: " << coord1.getX() << endl;
@@ -22,6 +23,10 @@ int main(void){
 	cout << "Constructor de copia." << endl;
 	cout << "Coord3.x: " << coord3.getX() << endl;
 	cout << "Coord3.y: " << coord3.getY() << endl;
+
+	cout << "Asignación." << endl;
+	cout << "Coord4.x: " << coord4.getX() << endl;
+	cout << "Coord4.y: " << coord4.getY() << endl;
 
 	cout << "Igualdad 1." << endl;
 	if(coord1==coord2)
@@ -46,6 +51,38 @@ int main(void){
 		cout << "Ha fallado." << endl;
 	else
 		cout << "OK" << endl;
+
+	// --------------------------------------------------- //
+
+	//Prueba sobre cuerpo.
+	cout << "TEST DE CUERPO" << endl;
+
+	Coordenada coordAux(1,1);
+
+	Cuerpo cuerpo1;
+	Cuerpo cuerpo2(1, 2, 3.0);
+	Cuerpo cuerpo3(coordAux, 4.0);
+
+	cout << "Constructor por defecto." << endl;
+	cout << "Posicion.x: " << cuerpo1.getPosicion().getX() << endl;	
+	cout << "Posicion.y: " << cuerpo1.getPosicion().getY() << endl;
+	cout << "Masa: " << cuerpo1.getMasa() << endl;
+
+	cout << "Constructor con componentes." << endl;
+	cout << "Posicion.x: " << cuerpo2.getPosicion().getX() << endl;	
+	cout << "Posicion.y: " << cuerpo2.getPosicion().getY() << endl;	
+	cout << "Masa: " << cuerpo2.getMasa() << endl;
+
+	cout << "Constructor con coordenada." << endl;
+	cout << "Posicion.x: " << cuerpo3.getPosicion().getX() << endl;	
+	cout << "Posicion.y: " << cuerpo3.getPosicion().getY() << endl;	
+	cout << "Masa: " << cuerpo3.getMasa() << endl;
+
+	cout << "Destructor." << endl;
+	cuerpo3.~Cuerpo();
+	cout << "Posicion.x: " << cuerpo3.getPosicion().getX() << endl;	
+	cout << "Posicion.y: " << cuerpo3.getPosicion().getY() << endl;	
+	cout << "Masa: " << cuerpo3.getMasa() << endl;
 
 	return 0;
 }

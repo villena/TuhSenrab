@@ -26,9 +26,9 @@ class Cuerpo{
 
 		~Cuerpo(); //Destructor.
 
-		Coordenada getCoordenada(); //Getter de la coord con la posición.
+		Coordenada getPosicion() const; //Getter de la coord con la posición.
 
-		double getMasa(); //Getter de la masa del cuerpo.
+		double getMasa() const; //Getter de la masa del cuerpo.
 };
 
 #endif
