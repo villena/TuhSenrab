@@ -1,3 +1,5 @@
+ESTO LO HAGO PARA INTENTAR EVITAR CREAR UNA CLASE QUE SEA EL ÁRBOL DE NODOS. NO OBSTANTE, PODEMOS INTENTAR CREAR DICHA CLASE. YO SIMPLEMENTE INTENTO HACERLO MÁS SENCILLO AUNQUE QUIZÁ CREAR LA CLASE ÁRBOL NO SEA MUY COMPLCIADO.
+
 Tendremos que crear un programa que lo que haga sea recorrer una lista de cuerpos de forma que coja uno a uno y le diga a un nodo raíz de Cuadrantes que lo introduzca. El Nodo cuadrante debe reconocer que ese cuerpo está dentro del cuadrante, y si es así, decidir en cuál de sus cuatro hijos entra. Se pueden dar 3 situaciones a la hora de introducir un cuerpo en un cuadrante
 
 (1) El cuadrante estaba vacío. Es la mejor situación pues tan solo hay que decirle a la lista de cuerpos que contiene el cuadrante que añada este cuerpo.
