@@ -6,15 +6,22 @@ using namespace std;
 // --------------------------------------------------- //
 
 Coordenada::Coordenada(){
-	x=0;
-	y=0;
+	x=0.0;
+	y=0.0;
 }
 
 // --------------------------------------------------- //
 
 Coordenada::Coordenada(float x, float y){
-	this->x=x;
-	this->y=y;
+	if(x>=0.0)
+		this->x=x;
+	else
+		this->x=0.0;
+
+	if(y>=0.0)
+		this->y=y;
+	else
+		this->y=0.0;
 }
 
 // --------------------------------------------------- //
@@ -27,8 +34,8 @@ Coordenada::Coordenada(const Coordenada &coord){
 // --------------------------------------------------- //
 
 Coordenada::~Coordenada(){
-	x=0;
-	y=0;
+	x=0.0;
+	y=0.0;
 }
 
 // --------------------------------------------------- //

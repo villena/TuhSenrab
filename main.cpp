@@ -7,10 +7,15 @@ int main(void){
 	//Prueba sobre coordenadas.
 	cout << "TEST DE COORDENADA" << endl;
 
+	Coordenada coord0(-2, -4);
 	Coordenada coord1;
 	Coordenada coord2(4, 5);
 	Coordenada coord3(coord2);
 	Coordenada coord4=coord1;
+
+	cout << "Constructor con negativas" << endl;
+	cout << "Coord0.x: " << coord0.getX() << endl;
+	cout << "Coord0.y: " << coord0.getY() << endl;	
 
 	cout << "Constructor por defecto." << endl;
 	cout << "Coord1.x: " << coord1.getX() << endl;
@@ -55,7 +60,7 @@ int main(void){
 	// --------------------------------------------------- //
 
 	//Prueba sobre cuerpo.
-	cout << "TEST DE CUERPO" << endl;
+	cout << endl << "TEST DE CUERPO" << endl;
 
 	Coordenada coordAux(1,1);
 

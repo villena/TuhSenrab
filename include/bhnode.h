@@ -7,6 +7,12 @@
 
 using namespace std;
 
+/*
+ * Esta clase representa un nodo Cuadrante para el
+ * método de cálculo de problemas n-body llamado
+ * de Barnes-hut. Cada cuadrante tiene sus coordenadas
+ * y dentro de ellos hay cuerpos.
+ */
 class BHNode{
 	private:
 		double masa; //Masa en el cuadrante.
@@ -24,6 +30,10 @@ class BHNode{
 		 * que sea hoja.
 		 */
 
+		 Coordenada calculaCentro(); //Calcula el centro del cuadrante.
+
+		 bool estaDentro(Coordenada); //Calcula si la coordenad está dentro del cuadrante.
+
 	public:
 		BHNode(); //Constructor por defecto.
 
@@ -33,19 +43,21 @@ class BHNode{
 
 		~BHNode(); //Destructor.
 
-		double getMasa(); //Getter de la masa dentro del cuadrante.
+		double getMasa() const; //Getter de la masa dentro del cuadrante.
 
-		Coordenada getCentroMasa(); //Getter del centro de masas.
+		Coordenada getCentroMasa() const; //Getter del centro de masas.
 
-		Coordenada getInfIzq(); //Getter de la coordenada inferior izquierda.
+		Coordenada getInfIzq() const; //Getter de la coordenada inferior izquierda.
 
-		Coordenada getSupDer(); //Getter de la coordenada superior derecha.
+		Coordenada getSupDer() const; //Getter de la coordenada superior derecha.
 
-		Coordenada getCentroCuad(); //Getter del centro del cuadrante.
+		Coordenada getCentroCuad() const; //Getter del centro del cuadrante.
 
-		unsigned int getNumNuerpos(); //Getter de la cantidad de cuerpos dentro del cuadrante.
+		unsigned int getNumCuerpos() const; //Getter de la cantidad de cuerpos dentro del cuadrante.
 
-		BHNode & obtenerCuadrante(Cuerpo); //Obtiene el cuadrante en el que cabe el cuerpo.
+		BHNode * getPadre() const; //Getter del padre.
+
+		BHNode * obtenerCuadrante(Cuerpo); //Obtiene el cuadrante en el que cabe el cuerpo.
 };
 
 #endif

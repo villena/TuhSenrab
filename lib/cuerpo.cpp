@@ -14,7 +14,14 @@ Cuerpo::Cuerpo(){
 // --------------------------------------------------- //
 
 Cuerpo::Cuerpo(float x, float y, double m){
-	posicion=Coordenada(x, y);
+	float aux=0.0, auy=0.0;
+	
+	if(x>0.0)
+		aux=x;
+	if(y>0.0)
+		auy=y;
+
+	posicion=Coordenada(aux, auy);
 	masa=m;
 }
 

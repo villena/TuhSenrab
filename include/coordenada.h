@@ -7,7 +7,7 @@ using namespace std;
 
 /*
  * Esta clase representa una coordenada 2D con sus
- * dos componentes.
+ * dos componentes. Se aceptan solo positivas.
  */
 class Coordenada{
 	private:
