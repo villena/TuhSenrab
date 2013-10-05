@@ -18,7 +18,7 @@ class Cuerpo{
 	public:
 		Cuerpo(); //Constructor por defecto.
 
-		Cuerpo(int, int, double); //Constructor con todas las componentes.
+		Cuerpo(float, float, double); //Constructor con todas las componentes.
 
 		Cuerpo(Coordenada, double); //Constructor con coordenada.
 

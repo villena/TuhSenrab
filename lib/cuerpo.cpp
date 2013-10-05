@@ -12,7 +12,7 @@ Cuerpo::Cuerpo(){
 
 // --------------------------------------------------- //
 
-Cuerpo::Cuerpo(int x, int y, double m){
+Cuerpo::Cuerpo(float x, float y, double m){
 
 }
 
