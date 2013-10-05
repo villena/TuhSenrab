@@ -74,21 +74,17 @@ int main(void){
 	Cuerpo cuerpo3(coordAux, 4.0);
 
 	cout << "Constructor por defecto." << endl;
-	cout << "Posicion: " << cuerpo1.getPosicion() << endl;
-	cout << "Masa: " << cuerpo1.getMasa() << endl;
+	cout << cuerpo1 << endl;
 
 	cout << "Constructor con componentes." << endl;
-	cout << "Posicion: " << cuerpo2.getPosicion() << endl;
-	cout << "Masa: " << cuerpo2.getMasa() << endl;
+	cout << cuerpo2 << endl;
 
 	cout << "Constructor con coordenada." << endl;
-	cout << "Posicion: " << cuerpo3.getPosicion() << endl;
-	cout << "Masa: " << cuerpo3.getMasa() << endl;
+	cout << cuerpo3 << endl;
 
 	cout << "Destructor." << endl;
 	cuerpo3.~Cuerpo();
-	cout << "Posicion: " << cuerpo3.getPosicion() << endl;
-	cout << "Masa: " << cuerpo3.getMasa() << endl;
+	cout << cuerpo3 << endl;
 
 	#endif
 
@@ -102,19 +98,19 @@ int main(void){
 	Coordenada coordA(0, 0);
 	Coordenada coordB(5, 5);
 
-	BHNode nodoPadre;
-	BHNode nodo1(coordA, coordB, nodoPadre);
+	BHNode nodo0;
+	BHNode nodo1(coordA, coordB, &nodo0);
 
 	cout << "Constructor por defecto." << endl;
-	cout << "Masa: " << nodoPadre.getMasa() << endl;
-	cout << "CentroMasa: " << nodoPadre.getCentroMasa() << endl;
-	cout << "esqInfIzq: " << nodoPadre.getInfIzq() << endl;
-	cout << "esqSupDer: " << nodoPadre.getSupDer() << endl;
-	cout << "CentroCuad: " << nodoPadre.getCentroCuad() << endl;
-	cout << "Cuerpos: " << nodoPadre.getNumCuerpos() << endl;
-	cout << "Padre: " << nodoPadre.getPadre() << endl;
-	cout << "Raíz?: " << nodoPadre.esRaiz() << endl;
-	cout << "Hoja?: " << nodoPadre.esHoja() << endl;
+	cout << "Masa: " << nodo0.getMasa() << endl;
+	cout << "CentroMasa: " << nodo0.getCentroMasa() << endl;
+	cout << "esqInfIzq: " << nodo0.getInfIzq() << endl;
+	cout << "esqSupDer: " << nodo0.getSupDer() << endl;
+	cout << "CentroCuad: " << nodo0.getCentroCuad() << endl;
+	cout << "Cuerpos: " << nodo0.getNumCuerpos() << endl;
+	cout << "Padre: " << nodo0.getPadre() << endl;
+	cout << "Raíz?: " << nodo0.esRaiz() << endl;
+	cout << "Hoja?: " << nodo0.esHoja() << endl;
 
 	cout << endl << "Constructor con parámetros." << endl;
 	cout << "Masa: " << nodo1.getMasa() << endl;
@@ -126,6 +122,76 @@ int main(void){
 	cout << "Padre: " << nodo1.getPadre() << endl;
 	cout << "Raíz?: " << nodo1.esRaiz() << endl;
 	cout << "Hoja?: " << nodo1.esHoja() << endl;
+
+	// - - - - - - - - - - - - - - - - - - - - //
+
+	BHNode nodoInit(coordA, coordB, NULL);
+
+	cout << endl << "Constructor con parámetros, padre NULL." << endl;
+	cout << "Masa: " << nodoInit.getMasa() << endl;
+	cout << "CentroMasa: " << nodoInit.getCentroMasa() << endl;
+	cout << "esqInfIzq: " << nodoInit.getInfIzq() << endl;
+	cout << "esqSupDer: " << nodoInit.getSupDer() << endl;
+	cout << "CentroCuad: " << nodoInit.getCentroCuad() << endl;
+	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
+	cout << "Padre: " << nodoInit.getPadre() << endl;
+	cout << "Raíz?: " << nodoInit.esRaiz() << endl;
+	cout << "Hoja?: " << nodoInit.esHoja() << endl;
+
+	Cuerpo cuerpoA(1, 1, 1.0);
+
+	cout << endl << "Intentamos introducir el cuerpo " << cuerpoA << endl;
+	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoA) << endl;
+	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
+	cout << nodoInit << endl;
+
+
+	Cuerpo cuerpoB(4, 4, 1.0);
+
+	cout << endl << "Intentamos introducir el cuerpo " << cuerpoB << endl;
+	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoB) << endl;
+	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
+	cout << nodoInit << endl;
+
+
+	Cuerpo cuerpoC(1, 4, 1.0);
+
+	cout << endl << "Intentamos introducir el cuerpo " << cuerpoC << endl;
+	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoC) << endl;
+	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
+	cout << nodoInit << endl;
+
+
+	Cuerpo cuerpoD(3, 3, 1.0);
+
+	cout << endl << "Intentamos introducir el cuerpo " << cuerpoD << endl;
+	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoD) << endl;
+	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
+	cout << nodoInit << endl;
+
+
+	Cuerpo cuerpoE(4, 1, 1.0);
+
+	cout << endl << "Intentamos introducir el cuerpo " << cuerpoE << endl;
+	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoE) << endl;
+	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
+	cout << nodoInit << endl;
+
+
+	Cuerpo cuerpoF(3, 4.5, 1.0);
+
+	cout << endl << "Intentamos introducir el cuerpo " << cuerpoF << endl;
+	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoF) << endl;
+	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
+	cout << nodoInit << endl;
+
+
+	Cuerpo cuerpoG(4.5, 4.5, 1.0);
+
+	cout << endl << "Intentamos introducir el cuerpo " << cuerpoG << endl;
+	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoG) << endl;
+	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
+	cout << nodoInit << endl;
 
 	#endif
 

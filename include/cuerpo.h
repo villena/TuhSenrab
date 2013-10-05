@@ -29,6 +29,8 @@ class Cuerpo{
 		Coordenada getPosicion() const; //Getter de la coord con la posición.
 
 		double getMasa() const; //Getter de la masa del cuerpo.
+
+		friend ostream & operator<<(ostream &, const Cuerpo &); //Sobrecarga operador salida.
 };
 
 #endif

@@ -33,7 +33,7 @@ class BHNode{
 	public:
 		BHNode(); //Constructor por defecto.
 
-		BHNode(Coordenada, Coordenada, BHNode &); //Constructor con las esquinas y el padre.
+		BHNode(Coordenada, Coordenada, BHNode *); //Constructor con las esquinas y el padre.
 
 		~BHNode(); //Destructor.
 
@@ -60,6 +60,8 @@ class BHNode{
 		BHNode * obtenerCuadrante(Coordenada); //Obtiene el cuadrante en el que entra la coordenada.
 
 		void expandirNodo(); //Expande un nodo: crea sus 4 hijos.
+
+		friend ostream & operator<<(ostream &, const BHNode &); //Sobrecarga operador salida.
 };
 
 #endif

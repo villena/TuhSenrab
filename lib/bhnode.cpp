@@ -25,14 +25,14 @@ BHNode::BHNode(){
 
 // --------------------------------------------------- //
 
-BHNode::BHNode(Coordenada infIzq, Coordenada supDer, BHNode &padre){
+BHNode::BHNode(Coordenada infIzq, Coordenada supDer, BHNode *padre){
 	masa=0.0;
 	centroMasa=Coordenada();
 	esqInfIzq=infIzq;
 	esqSupDer=supDer;
 	this->calculaCentro(centroCuadrante);
 	numCuerpos=0;
-	nodoPadre=&padre;
+	nodoPadre=padre;
 	cuerpoInterior=NULL;
 
 	for(int i=0; i<4; i++)
@@ -130,7 +130,7 @@ bool BHNode::introducirCuerpo(Cuerpo &cuerpo){
 		assert(this->esHoja()==true);
 
 		numCuerpos++;
-		*cuerpoInterior=cuerpo;
+		cuerpoInterior=&cuerpo;
 
 		return true;
 	}
@@ -186,11 +186,53 @@ BHNode * BHNode::obtenerCuadrante(Coordenada coordCuerpo){
 
 // --------------------------------------------------- //
 
+
+/*  _________
+ * |    |    |
+ * |__0_|_1__|  
+ * |	|	 |
+ * |__2_|_3__|
+ */
+
 void BHNode::expandirNodo(){
 	assert(this->esHoja()==true);
 
-	for(int i=0; i<4; i++)
-		hijosCuadrante[i]=new BHNode();
+	Coordenada infIzq0(esqInfIzq.getX(), centroCuadrante.getY());
+	Coordenada supDer0(centroCuadrante.getX(), esqSupDer.getY());
+
+	hijosCuadrante[0]=new BHNode(infIzq0, supDer0, this);
+
+	Coordenada infIzq1(centroCuadrante);
+	Coordenada supDer1(esqSupDer);
+
+	hijosCuadrante[1]=new BHNode(infIzq1, supDer1, this);
+
+	Coordenada infIzq2(esqInfIzq);
+	Coordenada supDer2(centroCuadrante);
+
+	hijosCuadrante[2]=new BHNode(infIzq2, supDer2, this);
+
+	Coordenada infIzq3(centroCuadrante.getX(), esqInfIzq.getY());
+	Coordenada supDer3(esqSupDer.getX(), centroCuadrante.getY());
+
+	hijosCuadrante[3]=new BHNode(infIzq3, supDer3, this);
+}
+
+ostream & operator<<(ostream &op, const BHNode &node){
+	op << "es raíz? " << node.esRaiz() << endl;
+	op << "es hoja? " << node.esHoja() << endl;
+	op << "cuerpos? " << node.getNumCuerpos() << endl;
+
+	if(!node.esHoja()){
+		op << "Hijo NO. Cuerpos: " << node.hijosCuadrante[0]->getNumCuerpos() << endl;
+		op << "Hijo NE. Cuerpos: " << node.hijosCuadrante[1]->getNumCuerpos() << endl;
+		op << "Hijo SO. Cuerpos: " << node.hijosCuadrante[2]->getNumCuerpos() << endl;
+		op << "Hijo SE. Cuerpos: " << node.hijosCuadrante[3]->getNumCuerpos();
+	}
+	else
+		op << "Sin hijos";
+
+	return op;
 }
 
 // --------------------------------------------------- //
@@ -200,8 +242,8 @@ void BHNode::expandirNodo(){
 void BHNode::calculaCentro(Coordenada &coord){ 
 	float compX, compY;
 
-	compX=(esqSupDer.getX()-esqInfIzq.getX())/2;
-	compY=(esqSupDer.getY()-esqInfIzq.getY())/2;
+	compX=(esqSupDer.getX()-esqInfIzq.getX())/2+esqInfIzq.getX();
+	compY=(esqSupDer.getY()-esqInfIzq.getY())/2+esqInfIzq.getY();
 
 	coord=Coordenada(compX, compY);
 }

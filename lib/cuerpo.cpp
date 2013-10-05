@@ -57,3 +57,11 @@ Coordenada Cuerpo::getPosicion() const{
 double Cuerpo::getMasa() const{
 	return masa;
 }
+
+// --------------------------------------------------- //
+
+ostream & operator<<(ostream &op, const Cuerpo &cuerpo){
+	op << "[" << cuerpo.getPosicion() << ", " << cuerpo.getMasa() << "]";
+
+	return op;
+}
