@@ -11,13 +11,13 @@ using namespace std;
  */
 class Coordenada{
 	private:
-		int x; //Componente 'x' de la coordenada 2D.
-		int y; //Componente 'y' de la coordenada 2D.
+		float x; //Componente 'x' de la coordenada 2D.
+		float y; //Componente 'y' de la coordenada 2D.
 
 	public:
 		Coordenada(); //Constructor por defecto.
 
-		Coordenada(int, int); //Constructor con las dos componentes.
+		Coordenada(float, float); //Constructor con las dos componentes.
 
 		Coordenada(const Coordenada &); //Constructor de copia.
 
@@ -27,9 +27,9 @@ class Coordenada{
 
 		bool operator!=(const Coordenada &); //Sobrecarga operador desigualdad.
 
-		int getX() const; //Getter de la componente 'x'.
+		float getX() const; //Getter de la componente 'x'.
 
-		int getY() const; //Getter de la componente 'y'.
+		float getY() const; //Getter de la componente 'y'.
 };
 
 #endif

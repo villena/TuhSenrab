@@ -12,7 +12,7 @@ Coordenada::Coordenada(){
 
 // --------------------------------------------------- //
 
-Coordenada::Coordenada(int x, int y){
+Coordenada::Coordenada(float x, float y){
 	this->x=x;
 	this->y=y;
 }
@@ -51,12 +51,12 @@ bool Coordenada::operator!=(const Coordenada &coord){
 
 // --------------------------------------------------- //
 
-int Coordenada::getX() const{
+float Coordenada::getX() const{
 	return x;
 }
 
 // --------------------------------------------------- //
 
-int Coordenada::getY() const{
+float Coordenada::getY() const{
 	return y;
 }
