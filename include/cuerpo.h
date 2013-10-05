@@ -8,7 +8,7 @@ using namespace std;
 
 /*
  * Clase que representa un cuerpo en el espacio. Tiene su
- * masa y su posición 2D.
+ * masa y su posición 2D. 
  */
 class Cuerpo{
 	private:

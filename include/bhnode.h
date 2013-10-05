@@ -22,24 +22,17 @@ class BHNode{
 		Coordenada centroCuadrante; //Centro del cuadrante.
 		unsigned int numCuerpos; //Número de cuerpos dentro del cuadrante.
 		BHNode *nodoPadre; //Puntero al nodo padre del cuadrante.
-		BHNode *hijosCuadrante[4]; //Cada nodo tiene 0 o 4 hijos.
+		BHNode *hijosCuadrante[4]; //Punteros a los 0 o 4 hijos que tiene un nodo.
+		Cuerpo *cuerpoInterior; //Puntero Cuerpo contenido en este cuadrante.
 
-		/* 
-		 * Faltaría crear una lista de cuerpos, o un vector de cuerpos
-		 * para almacenar punteros a los cuerpos contenidos en un nodo
-		 * que sea hoja.
-		 */
+		Coordenada calculaCentro(); //Calcula el centro del cuadrante.
 
-		 Coordenada calculaCentro(); //Calcula el centro del cuadrante.
-
-		 bool estaDentro(Coordenada); //Calcula si la coordenad está dentro del cuadrante.
+		bool estaDentro(Coordenada); //Calcula si la coordenad está dentro del cuadrante.
 
 	public:
 		BHNode(); //Constructor por defecto.
 
 		BHNode(Coordenada, Coordenada, BHNode *); //Constructor con las esquinas y el padre.
-
-		BHNode(const BHNode &); //Constructor de copia.
 
 		~BHNode(); //Destructor.
 
@@ -57,7 +50,15 @@ class BHNode{
 
 		BHNode * getPadre() const; //Getter del padre.
 
-		BHNode * obtenerCuadrante(Cuerpo); //Obtiene el cuadrante en el que cabe el cuerpo.
+		bool esRaiz() const; //Devuelve TRUE si es un nodo raíz.
+
+		bool esHoja() const; //Devuelve TRUE si es un nodo hoja.
+
+		bool introducirCuerpo(Cuerpo &); //Si puede introducir el cuerpo devuelve TRUE.
+
+		BHNode * obtenerCuadrante(Coordenada); //Obtiene el cuadrante en el que entra la coordenada.
+
+		void expandirNodo(); //Expande un nodo: crea sus 4 hijos.
 };
 
 #endif
