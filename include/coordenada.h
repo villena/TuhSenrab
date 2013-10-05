@@ -27,9 +27,9 @@ class Coordenada{
 
 		bool operator!=(const Coordenada &); //Sobrecarga operador desigualdad.
 
-		int getX(); //Getter de la componente 'x'.
+		int getX() const; //Getter de la componente 'x'.
 
-		int getY(); //Getter de la componente 'y'.
+		int getY() const; //Getter de la componente 'y'.
 };
 
 #endif
