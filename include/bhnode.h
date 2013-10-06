@@ -57,6 +57,8 @@ class BHNode{
 
 		bool introducirCuerpo(Cuerpo &); //Si puede introducir el cuerpo devuelve TRUE.
 
+		void calcularDistribucionMasas(); //Calcula la distribución de masas en el nodo.
+
 		BHNode * obtenerCuadrante(Coordenada); //Obtiene el cuadrante en el que entra la coordenada.
 
 		void expandirNodo(); //Expande un nodo: crea sus 4 hijos.

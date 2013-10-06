@@ -81,6 +81,24 @@ float Coordenada::getY() const{
 
 // --------------------------------------------------- //
 
+void Coordenada::setX(float newX){
+	if(newX>0.0)
+		x=newX;
+	else
+		x=0.0;
+}
+
+// --------------------------------------------------- //
+
+void Coordenada::setY(float newY){
+	if(newY>0.0)
+		y=newY;
+	else
+		y=0.0;
+}
+
+// --------------------------------------------------- //
+
 ostream & operator<<(ostream &op, const Coordenada &coord){
 	op << "(" << coord.getX() << ", " << coord.getY() << ")";
 

@@ -163,6 +163,31 @@ bool BHNode::introducirCuerpo(Cuerpo &cuerpo){
 
 // --------------------------------------------------- //
 
+void BHNode::calcularDistribucionMasas(){
+	if(numCuerpos==1){ //Solo un cuerpo.
+		centroMasa=cuerpoInterior->getPosicion();
+		masa=cuerpoInterior->getMasa();
+	}
+	else{ //0 o más de uno.
+		float newX=centroMasa.getX(), newY=centroMasa.getY();
+
+		for(int i=0; i<4; i++){
+			if(hijosCuadrante[i]){ //Si tuviese 0 hijos, no se ejecuta nada de esto.
+				hijosCuadrante[i]->calcularDistribucionMasas();
+
+				masa+=hijosCuadrante[i]->masa;
+				newX+=hijosCuadrante[i]->centroMasa.getX()*hijosCuadrante[i]->masa;
+				newY+=hijosCuadrante[i]->centroMasa.getY()*hijosCuadrante[i]->masa;
+			}
+		}
+
+		centroMasa.setX(newX/masa);
+		centroMasa.setY(newY/masa);
+	}
+}
+
+// --------------------------------------------------- //
+
 BHNode * BHNode::obtenerCuadrante(Coordenada coordCuerpo){
 	assert(this->esHoja()==false); //Solo si ya está expandido podemos obtener cuadrantes.
 
@@ -190,7 +215,7 @@ BHNode * BHNode::obtenerCuadrante(Coordenada coordCuerpo){
 /*  _________
  * |    |    |
  * |__0_|_1__|  
- * |	|	 |
+ * |	|    |
  * |__2_|_3__|
  */
 

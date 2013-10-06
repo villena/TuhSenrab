@@ -58,6 +58,14 @@ int main(void){
 	else
 		cout << "OK" << endl;
 
+	cout << "Setter X,Y correcto" << endl;
+	coord1.setX(4.5); coord1.setY(4.5);
+	cout << "Coord1: " << coord1 << endl;
+
+	cout << "Setter X,Y incorrecto" << endl;
+	coord1.setX(-4.5); coord1.setY(-4.5);
+	cout << "Coord1: " << coord1 << endl;
+
 	#endif
 
 	// --------------------------------------------------- //
@@ -192,6 +200,11 @@ int main(void){
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoG) << endl;
 	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
 	cout << nodoInit << endl;
+
+	cout << endl << "Ahora calculamos la distribución de masas. " << endl;
+	nodoInit.calcularDistribucionMasas();
+	cout << "Masa: " << nodoInit.getMasa() << endl;
+	cout << "Centro masa: " << nodoInit.getCentroMasa() << endl;
 
 	#endif
 
