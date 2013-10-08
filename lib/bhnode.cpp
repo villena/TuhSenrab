@@ -4,6 +4,10 @@
 #include "bhnode.h"
 
 #include <cassert>
+#include <tgmath.h>
+#include <cmath>
+
+const double THETA = 0.5;
 
 using namespace std;
 
@@ -284,4 +288,38 @@ bool BHNode::estaDentro(Coordenada coord){
 		contenido=true;
 
 	return contenido;
+}
+
+// --------------------------------------------------- //
+
+double BHNode::calculaFuerza(Cuerpo &cuerpo)
+{
+	double fuerza = 0.0;
+	double r = 0.0;
+	double G = 6.673*pow(10, -11);
+
+	if(numCuerpos == 1)
+	{
+		r = pow((cuerpoInterior->getPosicion().getX() - cuerpo.getPosicion().getX()), 2) + pow((cuerpoInterior->getPosicion().getY() - cuerpo.getPosicion().getY()), 2);
+		fuerza = G*((cuerpo.getMasa()*cuerpoInterior->getMasa()) / r);
+	}
+	else
+	{
+		r =  pow((this->getCentroMasa().getX() - cuerpo.getPosicion().getX()), 2.0) + pow((this->getCentroMasa().getY() - cuerpo.getPosicion().getY()), 2);
+		double d = fabs(this->getSupDer().getX() - this->getInfIzq().getX());
+
+		if(d/r < THETA)
+		{
+			fuerza = G*((cuerpo.getMasa()*this->getMasa()) / r);
+		}
+		else
+		{
+			for(int i=0;i<4;i++)
+			{
+				fuerza += hijosCuadrante[i]->calculaFuerza(cuerpo);
+			}
+		}
+	}
+
+	return fuerza;
 }

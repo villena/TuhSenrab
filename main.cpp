@@ -206,7 +206,20 @@ int main(void){
 	cout << "Masa: " << nodoInit.getMasa() << endl;
 	cout << "Centro masa: " << nodoInit.getCentroMasa() << endl;
 
+
+	cout << endl << "Prueba Fuerza" << endl;
+	cuerpoG.setFuerza(nodoInit.calculaFuerza(cuerpoG));
+	cout << "Fuerza " << cuerpoG.getFuerza()<<endl;
+
 	#endif
 
 	return 0;
+}
+
+void calculaFuerza(Cuerpo c/*listacuerpos*/, BHNode raiz)
+{
+	//for(elemento en listacuerpos)
+	//{
+		c.setFuerza(raiz.calculaFuerza(c));
+	//}
 }

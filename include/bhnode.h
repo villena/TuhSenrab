@@ -63,6 +63,8 @@ class BHNode{
 
 		void expandirNodo(); //Expande un nodo: crea sus 4 hijos.
 
+		double calculaFuerza(Cuerpo &cuerpo);
+
 		friend ostream & operator<<(ostream &, const BHNode &); //Sobrecarga operador salida.
 };
 
