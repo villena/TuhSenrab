@@ -5,7 +5,7 @@ OPTIONS= -g
 DEBUG= #-D DEBUG
 LIBDIR=lib
 INCLUDEDIR=include
-_OBJ= bhnode.o cuerpo.o coordenada.o
+_OBJ= coordenada.o cuerpo.o bhnode.o
 OBJ = $(patsubst %,$(LIBDIR)/%,$(_OBJ))
 
 main:    main.cpp $(OBJ)

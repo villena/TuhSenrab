@@ -24,7 +24,7 @@ class BHNode{
 		BHNode *nodoPadre; //Puntero al nodo padre del cuadrante.
 		BHNode *hijosCuadrante[4]; //Punteros a los 0 o 4 hijos que tiene un nodo.
 		Cuerpo *cuerpoInterior; //Puntero Cuerpo contenido en este cuadrante.
-
+		
 
 		void calculaCentro(Coordenada &); //Calcula el centro del cuadrante.
 
@@ -57,13 +57,13 @@ class BHNode{
 
 		bool introducirCuerpo(Cuerpo &); //Si puede introducir el cuerpo devuelve TRUE.
 
+		double calculaFuerza(const Cuerpo &); //Calcula la fuerza que ejerce el árbol sobre el cuerpo.
+
 		void calcularDistribucionMasas(); //Calcula la distribución de masas en el nodo.
 
 		BHNode * obtenerCuadrante(Coordenada); //Obtiene el cuadrante en el que entra la coordenada.
 
 		void expandirNodo(); //Expande un nodo: crea sus 4 hijos.
-
-		double calculaFuerza(Cuerpo &cuerpo);
 
 		friend ostream & operator<<(ostream &, const BHNode &); //Sobrecarga operador salida.
 };

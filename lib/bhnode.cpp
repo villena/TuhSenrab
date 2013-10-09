@@ -1,13 +1,12 @@
 #include <iostream>
+#include <cassert>
+#include <math.h>
 #include "coordenada.h"
 #include "cuerpo.h"
 #include "bhnode.h"
 
-#include <cassert>
-#include <tgmath.h>
-#include <cmath>
-
-const double THETA = 0.5;
+const double kTHETA=0.5;
+const double kG=6.67428*pow(10, -11);
 
 using namespace std;
 
@@ -192,6 +191,37 @@ void BHNode::calcularDistribucionMasas(){
 
 // --------------------------------------------------- //
 
+double BHNode::calculaFuerza(const Cuerpo &cuerpo){
+	//Si es el mismo cuerpo, no se ejerce fuerza a sí mismo.
+	//Si no tiene cuerpos, no afecta.
+	if(cuerpoInterior==&cuerpo || numCuerpos==0) 
+		return 0.0;
+
+	double fuerza=0.0;
+	double r=0.0;
+
+	r=cuerpo.getPosicion().distanciaEuclidea(centroMasa);
+
+	if(numCuerpos==1)
+		fuerza=kG*cuerpo.getMasa()*masa/pow(r, 2);
+	else{
+		double d = fabs(esqSupDer.getX()-esqInfIzq.getX());
+
+		if(d/r<kTHETA)
+			fuerza = kG*cuerpo.getMasa()*masa/pow(r, 2);
+		else{
+			for(int i=0; i<4; i++){
+				if(hijosCuadrante[i])
+					fuerza+=hijosCuadrante[i]->calculaFuerza(cuerpo);
+			}
+		}
+	}
+
+	return fuerza;
+}
+
+// --------------------------------------------------- //
+
 BHNode * BHNode::obtenerCuadrante(Coordenada coordCuerpo){
 	assert(this->esHoja()==false); //Solo si ya está expandido podemos obtener cuadrantes.
 
@@ -247,6 +277,8 @@ void BHNode::expandirNodo(){
 	hijosCuadrante[3]=new BHNode(infIzq3, supDer3, this);
 }
 
+// --------------------------------------------------- //
+
 ostream & operator<<(ostream &op, const BHNode &node){
 	op << "es raíz? " << node.esRaiz() << endl;
 	op << "es hoja? " << node.esHoja() << endl;
@@ -288,38 +320,4 @@ bool BHNode::estaDentro(Coordenada coord){
 		contenido=true;
 
 	return contenido;
-}
-
-// --------------------------------------------------- //
-
-double BHNode::calculaFuerza(Cuerpo &cuerpo)
-{
-	double fuerza = 0.0;
-	double r = 0.0;
-	double G = 6.673*pow(10, -11);
-
-	if(numCuerpos == 1)
-	{
-		r = pow((cuerpoInterior->getPosicion().getX() - cuerpo.getPosicion().getX()), 2) + pow((cuerpoInterior->getPosicion().getY() - cuerpo.getPosicion().getY()), 2);
-		fuerza = G*((cuerpo.getMasa()*cuerpoInterior->getMasa()) / r);
-	}
-	else
-	{
-		r =  pow((this->getCentroMasa().getX() - cuerpo.getPosicion().getX()), 2.0) + pow((this->getCentroMasa().getY() - cuerpo.getPosicion().getY()), 2);
-		double d = fabs(this->getSupDer().getX() - this->getInfIzq().getX());
-
-		if(d/r < THETA)
-		{
-			fuerza = G*((cuerpo.getMasa()*this->getMasa()) / r);
-		}
-		else
-		{
-			for(int i=0;i<4;i++)
-			{
-				fuerza += hijosCuadrante[i]->calculaFuerza(cuerpo);
-			}
-		}
-	}
-
-	return fuerza;
 }

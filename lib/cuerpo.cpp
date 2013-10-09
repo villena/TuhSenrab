@@ -40,7 +40,7 @@ Cuerpo::Cuerpo(Coordenada coord, double m){
 Cuerpo::Cuerpo(const Cuerpo &cuerpo){
 	posicion=cuerpo.getPosicion();
 	masa=cuerpo.getMasa();
-	fuerza=cuerpo.getMasa();
+	fuerza=cuerpo.getFuerza();
 }
 
 // --------------------------------------------------- //

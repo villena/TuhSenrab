@@ -66,6 +66,12 @@ int main(void){
 	coord1.setX(-4.5); coord1.setY(-4.5);
 	cout << "Coord1: " << coord1 << endl;
 
+	cout << "Distancia entre A(0,0) y B(1,1)." << endl;
+	Coordenada coord00(0,0);
+	Coordenada coord01(1,1);
+	cout << "Distancia desde A: " << coord00.distanciaEuclidea(coord01) << endl;
+	cout << "Distancia desde B: " << coord01.distanciaEuclidea(coord00) << endl;
+
 	#endif
 
 	// --------------------------------------------------- //
@@ -207,19 +213,36 @@ int main(void){
 	cout << "Centro masa: " << nodoInit.getCentroMasa() << endl;
 
 
-	cout << endl << "Prueba Fuerza" << endl;
+	cout << endl << "Prueba fuerza con A" << endl;
+	cuerpoA.setFuerza(nodoInit.calculaFuerza(cuerpoA));
+	cout << "Fuerza " << cuerpoA.getFuerza()<<endl;
+
+	cout << endl << "Prueba fuerza con B" << endl;
+	cuerpoB.setFuerza(nodoInit.calculaFuerza(cuerpoB));
+	cout << "Fuerza " << cuerpoB.getFuerza()<<endl;
+
+	cout << endl << "Prueba fuerza con C" << endl;
+	cuerpoC.setFuerza(nodoInit.calculaFuerza(cuerpoC));
+	cout << "Fuerza " << cuerpoC.getFuerza()<<endl;
+
+	cout << endl << "Prueba fuerza con D" << endl;
+	cuerpoD.setFuerza(nodoInit.calculaFuerza(cuerpoD));
+	cout << "Fuerza " << cuerpoD.getFuerza()<<endl;
+
+	cout << endl << "Prueba fuerza con E" << endl;
+	cuerpoE.setFuerza(nodoInit.calculaFuerza(cuerpoE));
+	cout << "Fuerza " << cuerpoE.getFuerza()<<endl;
+
+	cout << endl << "Prueba fuerza con F" << endl;
+	cuerpoF.setFuerza(nodoInit.calculaFuerza(cuerpoF));
+	cout << "Fuerza " << cuerpoF.getFuerza()<<endl;
+
+	cout << endl << "Prueba fuerza con G" << endl;
 	cuerpoG.setFuerza(nodoInit.calculaFuerza(cuerpoG));
 	cout << "Fuerza " << cuerpoG.getFuerza()<<endl;
+
 
 	#endif
 
 	return 0;
-}
-
-void calculaFuerza(Cuerpo c/*listacuerpos*/, BHNode raiz)
-{
-	//for(elemento en listacuerpos)
-	//{
-		c.setFuerza(raiz.calculaFuerza(c));
-	//}
 }

@@ -14,7 +14,7 @@ class Cuerpo{
 	private:
 		Coordenada posicion; //Coordenadas de la posición del cuerpo.
 		double masa; //Masa del cuerpo.
-		double fuerza;
+		double fuerza; //Fuerza a la que es sometido el cuerpo.
 
 	public:
 		Cuerpo(); //Constructor por defecto.
@@ -31,9 +31,9 @@ class Cuerpo{
 
 		double getMasa() const; //Getter de la masa del cuerpo.
 
-		double getFuerza() const;
+		double getFuerza() const; //Getter de la fuerza ejercida sobre el cuerpo.
 
-		void setFuerza(double f);
+		void setFuerza(double); //Setter de la fuerza ejercida sobre el cuerpo.
 
 		friend ostream & operator<<(ostream &, const Cuerpo &); //Sobrecarga operador salida.
 };

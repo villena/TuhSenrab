@@ -1,3 +1,22 @@
+v3.0
+
+TODO:
+- Programa que genere cuerpos y podamos guardarlos en un fichero con su formato de salida.
+- Programa para leer de un fichero cuerpos y crearlos. Muy relacionado con el anterior.
+- Programa principal: genere los cuerpos y el cuadrado inicial. Genera el árbol. Pide que se realice el cálculo de la distribución de la masa. Luego va uno a uno con los cuerpos que tiene pidiendo que se calcule la fuerza sobre ellos.
+- Representación gráfica de los cuerpos y los cuadrados. El programa principal podría ir generando esta salida.
+- Memoria
+- Presentación
+
+Mejoras:
+- Controlar que no introduzcan cuerpos con las mismas coordenadas. Dos cuerpos físicamente no es posible que estén en la misma coordenada.
+- Representar el sentido de la fuerza
+- Cuerpos en movimiento constante -> O Acelerando!
+
+
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 v2.0
 
 He visto que el método de Barnes-hut exige crear cuadrantes para todos los cuerpos. No para de crear cuadrantes por que estén muy cerca unos de otros. El considerar si existe un conjunto de cuerpos muy cercanos entre sí es para la hora de calcular las interacciones de fuerzas.
