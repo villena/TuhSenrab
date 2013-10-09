@@ -37,8 +37,6 @@ class Coordenada{
 
 		void setY(float); //Setter de la componente 'y'.
 
-		float distanciaEuclidea(Coordenada); //Distancia entre dos puntos.
-
 		friend ostream & operator<<(ostream &, const Coordenada &); //Sobrecarga operador salida.
 };
 

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <math.h>
 #include "coordenada.h"
 
 using namespace std;
@@ -96,18 +95,6 @@ void Coordenada::setY(float newY){
 		y=newY;
 	else
 		y=0.0;
-}
-
-// --------------------------------------------------- //
-
-float Coordenada::distanciaEuclidea(Coordenada otra){
-	float distancia=0.0, subX=0.0, subY=0.0;
-
-	subX=x-otra.getX();
-	subY=y-otra.getY();
-	distancia=sqrt(pow(subX,2)+pow(subY,2));
-
-	return distancia;
 }
 
 // --------------------------------------------------- //
