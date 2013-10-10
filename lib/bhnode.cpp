@@ -18,6 +18,7 @@ BHNode::BHNode(){
 	esqInfIzq=Coordenada();
 	esqSupDer=Coordenada();
 	centroCuadrante=Coordenada();
+	lado=0.0;
 	numCuerpos=0;
 	nodoPadre=NULL;
 	cuerpoInterior=NULL;
@@ -34,6 +35,7 @@ BHNode::BHNode(Coordenada infIzq, Coordenada supDer, BHNode *padre){
 	esqInfIzq=infIzq;
 	esqSupDer=supDer;
 	this->calculaCentro(centroCuadrante);
+	lado=fabs(esqSupDer.getX()-esqInfIzq.getX());
 	numCuerpos=0;
 	nodoPadre=padre;
 	cuerpoInterior=NULL;
@@ -50,6 +52,7 @@ BHNode::~BHNode(){
 	esqInfIzq.~Coordenada();
 	esqSupDer.~Coordenada();
 	centroCuadrante.~Coordenada();
+	lado=0.0;
 	numCuerpos=0;
 	nodoPadre=NULL;
 	cuerpoInterior=NULL;
@@ -88,6 +91,12 @@ Coordenada BHNode::getSupDer() const{
 
 Coordenada BHNode::getCentroCuad() const{
 	return centroCuadrante;
+}
+
+// --------------------------------------------------- //
+
+float BHNode::getLado() const{
+	return lado;
 }
 
 // --------------------------------------------------- //
@@ -205,9 +214,7 @@ double BHNode::calculaFuerza(const Cuerpo &cuerpo){
 	if(numCuerpos==1)
 		fuerza=kG*cuerpo.getMasa()*masa/pow(r, 2);
 	else{
-		double d = fabs(esqSupDer.getX()-esqInfIzq.getX());
-
-		if(d/r<kTHETA)
+		if(lado/r<kTHETA)
 			fuerza = kG*cuerpo.getMasa()*masa/pow(r, 2);
 		else{
 			for(int i=0; i<4; i++){

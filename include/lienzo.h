@@ -6,25 +6,28 @@
 
 using namespace std;
 
-
+/*
+ * Esta clase representa un lienzo. Se dibujará
+ * utilizando código XML y SVG.
+ */
 class Lienzo{
-
 	private:
-		string data;
+		string data; //Contenido del fichero.
+
+		string floatToString(float); //Aux: Pasar float a string.
 
 	public:
-		Lienzo(); //Constructor por defecto
+		Lienzo(); //Constructor por defecto.
 
-		void drawS(Coordenada InfIzq, Coordenada SupDer, float l); //Añade un cuadrado dadas las coordenadas InfIzq, SupDer, y el lado
+		void drawSquare(Coordenada, Coordenada, float); //Añade un cuadrado dadas las coordenadas InfIzq, SupDer, y el lado.
 
-		void drawS(Coordenada InfIzq, Coordenada SupDer); //Añade un cuadrado dados InfIzq y SupDer
+		void drawSquare(Coordenada, Coordenada); //Añade un cuadrado dadas las coordenadas InfIzq y SupDer.
 
-		void drawC(Coordenada c, double masa); //Añade un circulo en c de radio masa
+		void drawCircle(Coordenada, double); //Añade un circulo dados su centro y radio.
 
-		void saveFile(); //Guarda el archivo
+		void saveFile(); //Guarda el archivo.
 
-		string Convert(float f);
-
+		void resetLienzo(); //Resetea el lienzo.
 };
 
 #endif

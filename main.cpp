@@ -1,9 +1,11 @@
 #include <iostream>
 #include "bhnode.h"
+#include "lienzo.h"
 
 //#define COORD
 //#define CUERPO
-#define BHNODE
+//#define BHNODE
+#define LIENZO
 
 using namespace std;
 
@@ -74,6 +76,7 @@ int main(void){
 
 	#endif
 
+
 	// --------------------------------------------------- //
 
 
@@ -102,6 +105,7 @@ int main(void){
 
 	#endif
 
+
 	// --------------------------------------------------- //
 
 
@@ -121,6 +125,7 @@ int main(void){
 	cout << "esqInfIzq: " << nodo0.getInfIzq() << endl;
 	cout << "esqSupDer: " << nodo0.getSupDer() << endl;
 	cout << "CentroCuad: " << nodo0.getCentroCuad() << endl;
+	cout << "Lado: " << nodo0.getLado() << endl;
 	cout << "Cuerpos: " << nodo0.getNumCuerpos() << endl;
 	cout << "Padre: " << nodo0.getPadre() << endl;
 	cout << "Raíz?: " << nodo0.esRaiz() << endl;
@@ -132,12 +137,13 @@ int main(void){
 	cout << "esqInfIzq: " << nodo1.getInfIzq() << endl;
 	cout << "esqSupDer: " << nodo1.getSupDer() << endl;
 	cout << "CentroCuad: " << nodo1.getCentroCuad() << endl;
+	cout << "Lado: " << nodo1.getLado() << endl;
 	cout << "Cuerpos: " << nodo1.getNumCuerpos() << endl;
 	cout << "Padre: " << nodo1.getPadre() << endl;
 	cout << "Raíz?: " << nodo1.esRaiz() << endl;
 	cout << "Hoja?: " << nodo1.esHoja() << endl;
 
-	// - - - - - - - - - - - - - - - - - - - - //
+	// - - - - - - - - - INTRODUCIR - - - - - - - - - - // 
 
 	BHNode nodoInit(coordA, coordB, NULL);
 
@@ -147,6 +153,7 @@ int main(void){
 	cout << "esqInfIzq: " << nodoInit.getInfIzq() << endl;
 	cout << "esqSupDer: " << nodoInit.getSupDer() << endl;
 	cout << "CentroCuad: " << nodoInit.getCentroCuad() << endl;
+	cout << "Lado: " << nodoInit.getLado() << endl;
 	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
 	cout << "Padre: " << nodoInit.getPadre() << endl;
 	cout << "Raíz?: " << nodoInit.esRaiz() << endl;
@@ -212,6 +219,7 @@ int main(void){
 	cout << "Masa: " << nodoInit.getMasa() << endl;
 	cout << "Centro masa: " << nodoInit.getCentroMasa() << endl;
 
+	// - - - - - - - - - FUERZA - - - - - - - - - // 
 
 	cout << endl << "Prueba fuerza con A" << endl;
 	cuerpoA.setFuerza(nodoInit.calculaFuerza(cuerpoA));
@@ -241,6 +249,22 @@ int main(void){
 	cuerpoG.setFuerza(nodoInit.calculaFuerza(cuerpoG));
 	cout << "Fuerza " << cuerpoG.getFuerza()<<endl;
 
+	#endif
+
+	// --------------------------------------------------- //
+
+	#ifdef LIENZO
+
+	Lienzo lienzo1;
+	Coordenada l0;
+	Coordenada l1(5, 5);
+	Coordenada l2(2.5, 2.5);
+	Coordenada l3(10, 10);
+	BHNode n0(l0, l3, NULL);
+
+	lienzo1.drawSquare(n0.getInfIzq(), n0.getSupDer(), n0.getLado());
+
+	lienzo1.saveFile();
 
 	#endif
 

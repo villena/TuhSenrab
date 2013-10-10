@@ -20,11 +20,12 @@ class BHNode{
 		Coordenada esqInfIzq; //Coordenada de la esquina inferior izquierda del cuadrante.
 		Coordenada esqSupDer; //Coordenada de la esquina superior derecha del cuadrante.
 		Coordenada centroCuadrante; //Centro del cuadrante.
+		float lado; //Lado del cuadrado.
 		unsigned int numCuerpos; //Número de cuerpos dentro del cuadrante.
 		BHNode *nodoPadre; //Puntero al nodo padre del cuadrante.
 		BHNode *hijosCuadrante[4]; //Punteros a los 0 o 4 hijos que tiene un nodo.
 		Cuerpo *cuerpoInterior; //Puntero Cuerpo contenido en este cuadrante.
-		
+
 
 		void calculaCentro(Coordenada &); //Calcula el centro del cuadrante.
 
@@ -46,6 +47,8 @@ class BHNode{
 		Coordenada getSupDer() const; //Getter de la coordenada superior derecha.
 
 		Coordenada getCentroCuad() const; //Getter del centro del cuadrante.
+
+		float getLado() const; //Getter del lado del cuadrante.
 
 		unsigned int getNumCuerpos() const; //Getter de la cantidad de cuerpos dentro del cuadrante.
 

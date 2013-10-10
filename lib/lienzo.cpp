@@ -7,64 +7,77 @@
 #include "lienzo.h"
 #include "coordenada.h"
 
-
-
 using namespace std;
+
+// --------------------------------------------------- //
 
 Lienzo::Lienzo(){
 	data = "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"> \n";
 }
 
-void Lienzo::drawS(Coordenada InfIzq, Coordenada SupDer, float l){
+// --------------------------------------------------- //
+//El punto de inicio de dibujo es la esquina superior izquierda.
 
-	//El punto de inicio de dibujo es SupIzq
+void Lienzo::drawSquare(Coordenada infIzq, Coordenada supDer, float lado){
+	string xLienzo="", yLienzo="", ladoLienzo="";
 
-	string IzX,DeY,sl;
-	IzX=Convert(InfIzq.getX());
-	DeY=Convert(SupDer.getY());
-	sl=Convert(l);
+	xLienzo=floatToString(infIzq.getX());
+	yLienzo= floatToString(supDer.getY());
+	ladoLienzo=floatToString(lado);
 
-	data += "<rect x=\"" + IzX + "\" y=\"" + DeY + "\" width=\"" + sl + "\" height=\"" + sl + "\" fill=\"transparent\" stroke=\"green\" stroke-width=\"1\"/>" + '\n';
+	data += "<rect x=\"" + xLienzo + "\" y=\"" + yLienzo; 
+	data += "\" width=\"" + ladoLienzo + "\" height=\"" + ladoLienzo;
+	data += "\" fill=\"transparent\" stroke=\"green\" stroke-width=\"1\"/>" + '\n';
 }
 
-void Lienzo::drawS(Coordenada InfIzq, Coordenada SupDer){
+// --------------------------------------------------- //
 
-	//Calculo del lado
+void Lienzo::drawSquare(Coordenada infIzq, Coordenada supDer){
+	float lado = fabs(supDer.getX() - infIzq.getX());
 
-	float l = fabs(SupDer.getX() - InfIzq.getX());
-
-	drawS(InfIzq, SupDer, l);
+	drawSquare(infIzq, supDer, lado);
 }
 
-void Lienzo::drawC(Coordenada c, double masa){
+// --------------------------------------------------- //
 
-	string cx, cy, sm;
-	cx=Convert(c.getX());
-	cy=Convert(c.getY());
-	sm=Convert(masa);
+void Lienzo::drawCircle(Coordenada coord, double radioObjeto){
+	string xCentro="", yCentro="", radio="";
 
-	data += "<circle cx=\"" + cx + "\" cy=\""+ cy + "\" r=\"" + sm + "\" stroke=\"black\" stroke-width=\"0\" fill=\"black\" />" + '\n';
+	xCentro=floatToString(coord.getX());
+	yCentro=floatToString(coord.getY());
+	radio=floatToString(radioObjeto);
+
+	data += "<circle cx=\"" + xCentro + "\" cy=\""+ yCentro + "\" r=\"" + radio;
+	data += "\" stroke=\"black\" stroke-width=\"0\" fill=\"black\" />" + '\n';
 }
+
+// --------------------------------------------------- //
 
 void Lienzo::saveFile(){
-
-	data += "</svg> ";
-
 	ofstream file;
+
+	data += "\n</svg>";
+	
   	file.open ("draw.svg", ios::out);
   	file << data;
   	file.close();
 }
 
+// --------------------------------------------------- //
 
-string Lienzo::Convert(float f)
-{
+void Lienzo::resetLienzo(){
+	data = "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"> \n";
+}
+
+// --------------------------------------------------- //
+// --------------------------------------------------- //
+// --------------------------------------------------- //
+
+string Lienzo::floatToString(float num){
 	ostringstream buffer;
 
-	buffer << f;
+	buffer << num;
 	string str = buffer.str();
 
 	return str;
 }
-
-
