@@ -105,6 +105,24 @@ int main(void){
 
 	#endif
 
+	// --------------------------------------------------- //
+
+	#ifdef LIENZO
+
+	Lienzo lienzo1;
+	Coordenada l0;
+	Coordenada l1(125, 125);
+	Coordenada l2(250, 250);
+	Coordenada l3(500, 500);
+
+	lienzo1.drawSquare(l0, l3);
+	lienzo1.drawSquare(l0, l2);
+	lienzo1.drawSquare(l0, l1);
+	lienzo1.drawCircle(l1, 5);
+
+	lienzo1.saveFile("test1.svg");
+
+	#endif
 
 	// --------------------------------------------------- //
 
@@ -113,8 +131,8 @@ int main(void){
 	//Prueba sobre bhnode.
 	cout << endl << "TEST DE BHNODE" << endl;
 
-	Coordenada coordA(0, 5);
-	Coordenada coordB(5, 0);
+	Coordenada coordA(0, 500);
+	Coordenada coordB(500, 0);
 
 	BHNode nodo0;
 	BHNode nodo1(coordA, coordB, &nodo0);
@@ -159,15 +177,15 @@ int main(void){
 	cout << "Raíz?: " << nodoInit.esRaiz() << endl;
 	cout << "Hoja?: " << nodoInit.esHoja() << endl;
 
-	Cuerpo cuerpoA(1, 1, 1.0);
+	Cuerpo cuerpoA(100, 100, 10.0);
 
-	cout << endl << "Intentamos introducir el cuerpo " << cuerpoA << endl;
+	/*cout << endl << "Intentamos introducir el cuerpo " << cuerpoA << endl;
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoA) << endl;
 	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
 	cout << nodoInit << endl;
 
 
-	Cuerpo cuerpoB(4, 4, 1.0);
+	Cuerpo cuerpoB(400, 400, 10.0);
 
 	cout << endl << "Intentamos introducir el cuerpo " << cuerpoB << endl;
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoB) << endl;
@@ -175,7 +193,7 @@ int main(void){
 	cout << nodoInit << endl;
 
 
-	Cuerpo cuerpoC(1, 4, 1.0);
+	Cuerpo cuerpoC(100, 400, 10.0);
 
 	cout << endl << "Intentamos introducir el cuerpo " << cuerpoC << endl;
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoC) << endl;
@@ -183,7 +201,7 @@ int main(void){
 	cout << nodoInit << endl;
 
 
-	Cuerpo cuerpoD(3, 3, 1.0);
+	Cuerpo cuerpoD(300, 300, 10.0);
 
 	cout << endl << "Intentamos introducir el cuerpo " << cuerpoD << endl;
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoD) << endl;
@@ -191,7 +209,7 @@ int main(void){
 	cout << nodoInit << endl;
 
 
-	Cuerpo cuerpoE(4, 1, 1.0);
+	Cuerpo cuerpoE(400, 100, 10.0);
 
 	cout << endl << "Intentamos introducir el cuerpo " << cuerpoE << endl;
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoE) << endl;
@@ -199,7 +217,7 @@ int main(void){
 	cout << nodoInit << endl;
 
 
-	Cuerpo cuerpoF(3, 4.5, 1.0);
+	Cuerpo cuerpoF(300, 450, 1.0);
 
 	cout << endl << "Intentamos introducir el cuerpo " << cuerpoF << endl;
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoF) << endl;
@@ -207,7 +225,7 @@ int main(void){
 	cout << nodoInit << endl;
 
 
-	Cuerpo cuerpoG(4.5, 4.5, 1.0);
+	Cuerpo cuerpoG(450, 450, 10.0);
 
 	cout << endl << "Intentamos introducir el cuerpo " << cuerpoG << endl;
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoG) << endl;
@@ -247,26 +265,18 @@ int main(void){
 
 	cout << endl << "Prueba fuerza con G" << endl;
 	cuerpoG.setFuerza(nodoInit.calculaFuerza(cuerpoG));
-	cout << "Fuerza " << cuerpoG.getFuerza()<<endl;
+	cout << "Fuerza " << cuerpoG.getFuerza()<<endl;*/
 
-	#endif
+	// - - - - - - - - - DIBUJADO - - - - - - - - - // 
 
-	// --------------------------------------------------- //
+	cout << "Vamos a generar la representación final del ejemplo." << endl;
 
-	#ifdef LIENZO
+	Lienzo lienzoInit;
 
-	Lienzo lienzo1;
-	Coordenada l0;
-	Coordenada l1(125, 125);
-	Coordenada l2(250, 250);
-	Coordenada l3(500, 500);
+	nodoInit.generaSVG(lienzoInit);
+	lienzoInit.saveFile("lienzoEjemplo.svg");
 
-	lienzo1.drawSquare(l0, l3);
-	lienzo1.drawSquare(l0, l2);
-	lienzo1.drawSquare(l0, l1);
-	lienzo1.drawCircle(l1, 5);
-
-	lienzo1.saveFile();
+	cout << "Lienzo generado con el nombre: lienzoEjemplo.svg" << endl;
 
 	#endif
 

@@ -19,13 +19,13 @@ class Lienzo{
 	public:
 		Lienzo(); //Constructor por defecto.
 
-		void drawSquare(Coordenada, float); //Añade un cuadrado dadas las coordenadas SupIzq, InfDer, y el lado.
+		void drawSquare(Coordenada, float); //Añade un cuadrado dadas las coordenadas SupIzq y el lado.
 
 		void drawSquare(Coordenada, Coordenada); //Añade un cuadrado dadas las coordenadas SupIzq y InfDer.
 
 		void drawCircle(Coordenada, double); //Añade un circulo dados su centro y radio.
 
-		void saveFile(); //Guarda el archivo.
+		void saveFile(const char*); //Guarda el archivo.
 
 		void resetLienzo(); //Resetea el lienzo.
 };

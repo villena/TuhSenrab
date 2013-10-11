@@ -59,12 +59,12 @@ void Lienzo::drawCircle(Coordenada coord, double radioObjeto){
 
 // --------------------------------------------------- //
 
-void Lienzo::saveFile(){
+void Lienzo::saveFile(const char* nomFichero){
 	ofstream file;
 
 	data += "</svg>";
 	
-  	file.open ("draw.svg", ios::out);
+  	file.open (nomFichero, ios::out);
   	file << data;
   	file.close();
 }

@@ -250,6 +250,7 @@ BHNode * BHNode::obtenerCuadrante(Coordenada coordCuerpo){
 	return aux;
 }
 
+
 // --------------------------------------------------- //
 
 
@@ -283,6 +284,24 @@ void BHNode::expandirNodo(){
 
 	hijosCuadrante[3]=new BHNode(supIzq3, infDer3, this);
 }
+
+// --------------------------------------------------- //
+
+void BHNode::generaSVG(Lienzo &lienzo){
+	if(this->esHoja()){
+		lienzo.drawSquare(esqSupIzq, lado);
+
+		if(cuerpoInterior)
+			lienzo.drawCircle(cuerpoInterior->getPosicion(), cuerpoInterior->getMasa());
+	}
+	else{
+		for(int i=0; i<4; i++){
+			if(hijosCuadrante[i])
+				hijosCuadrante[i]->generaSVG(lienzo);
+		}
+	}
+}
+
 
 // --------------------------------------------------- //
 

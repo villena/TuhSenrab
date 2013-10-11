@@ -4,6 +4,7 @@
 #include <iostream>
 #include "coordenada.h"
 #include "cuerpo.h"
+#include "lienzo.h"
 
 using namespace std;
 
@@ -67,6 +68,8 @@ class BHNode{
 		BHNode * obtenerCuadrante(Coordenada); //Obtiene el cuadrante en el que entra la coordenada.
 
 		void expandirNodo(); //Expande un nodo: crea sus 4 hijos.
+
+		void generaSVG(Lienzo &); //Genera el SVG para representar el cuadrante y sus posibles hijos.
 
 		friend ostream & operator<<(ostream &, const BHNode &); //Sobrecarga operador salida.
 };
