@@ -15,8 +15,8 @@ using namespace std;
 BHNode::BHNode(){
 	masa=0.0;
 	centroMasa=Coordenada();
-	esqInfIzq=Coordenada();
-	esqSupDer=Coordenada();
+	esqSupIzq=Coordenada();
+	esqInfDer=Coordenada();
 	centroCuadrante=Coordenada();
 	lado=0.0;
 	numCuerpos=0;
@@ -29,13 +29,13 @@ BHNode::BHNode(){
 
 // --------------------------------------------------- //
 
-BHNode::BHNode(Coordenada infIzq, Coordenada supDer, BHNode *padre){
+BHNode::BHNode(Coordenada supIzq, Coordenada infDer, BHNode *padre){
 	masa=0.0;
 	centroMasa=Coordenada();
-	esqInfIzq=infIzq;
-	esqSupDer=supDer;
+	esqSupIzq=supIzq;
+	esqInfDer=infDer;
 	this->calculaCentro(centroCuadrante);
-	lado=fabs(esqSupDer.getX()-esqInfIzq.getX());
+	lado=fabs(esqInfDer.getX()-esqSupIzq.getX());
 	numCuerpos=0;
 	nodoPadre=padre;
 	cuerpoInterior=NULL;
@@ -49,8 +49,8 @@ BHNode::BHNode(Coordenada infIzq, Coordenada supDer, BHNode *padre){
 BHNode::~BHNode(){
 	masa=0.0;
 	centroMasa.~Coordenada();
-	esqInfIzq.~Coordenada();
-	esqSupDer.~Coordenada();
+	esqSupIzq.~Coordenada();
+	esqInfDer.~Coordenada();
 	centroCuadrante.~Coordenada();
 	lado=0.0;
 	numCuerpos=0;
@@ -77,14 +77,14 @@ Coordenada BHNode::getCentroMasa() const{
 
 // --------------------------------------------------- //
 
-Coordenada BHNode::getInfIzq() const{
-	return esqInfIzq;
+Coordenada BHNode::getSupIzq() const{
+	return esqSupIzq;
 }
 
 // --------------------------------------------------- //
 
-Coordenada BHNode::getSupDer() const{
-	return esqSupDer;
+Coordenada BHNode::getInfDer() const{
+	return esqInfDer;
 }
 
 // --------------------------------------------------- //
@@ -232,19 +232,19 @@ double BHNode::calculaFuerza(const Cuerpo &cuerpo){
 BHNode * BHNode::obtenerCuadrante(Coordenada coordCuerpo){
 	assert(this->esHoja()==false); //Solo si ya está expandido podemos obtener cuadrantes.
 
-	float x=coordCuerpo.getX(), y=coordCuerpo.getY();
+	float compX=coordCuerpo.getX(), compY=coordCuerpo.getY();
 	float xCentro=centroCuadrante.getX(), yCentro=centroCuadrante.getY();
 	BHNode* aux=NULL;
 
-	if(x<=xCentro && y>=yCentro) //Noroeste
+	if(compX<=xCentro && compY>=yCentro) //Noroeste
 		aux=hijosCuadrante[0];
-	else if(x>=xCentro && y>=yCentro) //Noreste
+	else if(compX>=xCentro && compY>=yCentro) //Noreste
 		aux=hijosCuadrante[1];
-	else if(x<=xCentro && y<=yCentro) //Suroeste
+	else if(compX<=xCentro && compY<=yCentro) //Suroeste
 		aux=hijosCuadrante[2];
-	else if(x>=xCentro && y<=yCentro) //Sureste
+	else if(compX>=xCentro && compY<=yCentro) //Sureste
 		aux=hijosCuadrante[3];
-	else //No está en este cuadrante.
+	else //No está en este cuadrante!!!
 		aux=NULL;
 
 	return aux;
@@ -263,25 +263,25 @@ BHNode * BHNode::obtenerCuadrante(Coordenada coordCuerpo){
 void BHNode::expandirNodo(){
 	assert(this->esHoja()==true);
 
-	Coordenada infIzq0(esqInfIzq.getX(), centroCuadrante.getY());
-	Coordenada supDer0(centroCuadrante.getX(), esqSupDer.getY());
+	Coordenada supIzq0(esqSupIzq);
+	Coordenada infDer0(centroCuadrante);
 
-	hijosCuadrante[0]=new BHNode(infIzq0, supDer0, this);
+	hijosCuadrante[0]=new BHNode(supIzq0, infDer0, this);
 
-	Coordenada infIzq1(centroCuadrante);
-	Coordenada supDer1(esqSupDer);
+	Coordenada supIzq1(centroCuadrante.getX(), esqSupIzq.getY());
+	Coordenada infDer1(esqInfDer.getX(), centroCuadrante.getY());
 
-	hijosCuadrante[1]=new BHNode(infIzq1, supDer1, this);
+	hijosCuadrante[1]=new BHNode(supIzq1, infDer1, this);
 
-	Coordenada infIzq2(esqInfIzq);
-	Coordenada supDer2(centroCuadrante);
+	Coordenada supIzq2(esqSupIzq.getX(), centroCuadrante.getY());
+	Coordenada infDer2(centroCuadrante.getX(), esqInfDer.getY());
 
-	hijosCuadrante[2]=new BHNode(infIzq2, supDer2, this);
+	hijosCuadrante[2]=new BHNode(supIzq2, infDer2, this);
 
-	Coordenada infIzq3(centroCuadrante.getX(), esqInfIzq.getY());
-	Coordenada supDer3(esqSupDer.getX(), centroCuadrante.getY());
+	Coordenada supIzq3(centroCuadrante);
+	Coordenada infDer3(esqInfDer);
 
-	hijosCuadrante[3]=new BHNode(infIzq3, supDer3, this);
+	hijosCuadrante[3]=new BHNode(supIzq3, infDer3, this);
 }
 
 // --------------------------------------------------- //
@@ -310,8 +310,8 @@ ostream & operator<<(ostream &op, const BHNode &node){
 void BHNode::calculaCentro(Coordenada &coord){ 
 	float compX, compY;
 
-	compX=(esqSupDer.getX()-esqInfIzq.getX())/2+esqInfIzq.getX();
-	compY=(esqSupDer.getY()-esqInfIzq.getY())/2+esqInfIzq.getY();
+	compX=(esqInfDer.getX()-esqSupIzq.getX())/2+esqSupIzq.getX();
+	compY=(esqSupIzq.getY()-esqInfDer.getY())/2+esqInfDer.getY();
 
 	coord=Coordenada(compX, compY);
 }
@@ -322,8 +322,8 @@ bool BHNode::estaDentro(Coordenada coord){
 	bool contenido=false;
 	float xCord=coord.getX(), yCord=coord.getY();
 	
-	if(xCord>=esqInfIzq.getX() && xCord<=esqSupDer.getX() &&
-		yCord>=esqInfIzq.getY() && yCord<=esqSupDer.getY())
+	if(xCord>=esqSupIzq.getX() && xCord<=esqInfDer.getX() &&
+		yCord<=esqSupIzq.getY() && yCord>=esqInfDer.getY())
 		contenido=true;
 
 	return contenido;

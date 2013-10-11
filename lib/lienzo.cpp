@@ -12,30 +12,33 @@ using namespace std;
 // --------------------------------------------------- //
 
 Lienzo::Lienzo(){
-	data = "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"> \n";
+	data = "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n";
 }
 
 // --------------------------------------------------- //
 //El punto de inicio de dibujo es la esquina superior izquierda.
 
-void Lienzo::drawSquare(Coordenada infIzq, Coordenada supDer, float lado){
+void Lienzo::drawSquare(Coordenada supIzq, float lado){
 	string xLienzo="", yLienzo="", ladoLienzo="";
 
-	xLienzo=floatToString(infIzq.getX());
-	yLienzo= floatToString(supDer.getY());
+	xLienzo=floatToString(supIzq.getX());
+	yLienzo= floatToString(supIzq.getY());
 	ladoLienzo=floatToString(lado);
 
 	data += "<rect x=\"" + xLienzo + "\" y=\"" + yLienzo; 
-	data += "\" width=\"" + ladoLienzo + "\" height=\"" + ladoLienzo;
-	data += "\" fill=\"transparent\" stroke=\"green\" stroke-width=\"1\"/>" + '\n';
+	data += "\" width=\"" + ladoLienzo + "\" height=\"" + ladoLienzo + "\" ";
+	data += "fill=\"transparent\" ";
+	data += "stroke=\"green\" ";
+	data += "stroke-width=\"1\"/>";
+	data += '\n';
 }
 
 // --------------------------------------------------- //
 
-void Lienzo::drawSquare(Coordenada infIzq, Coordenada supDer){
-	float lado = fabs(supDer.getX() - infIzq.getX());
+void Lienzo::drawSquare(Coordenada supIzq, Coordenada infDer){
+	float lado = fabs(infDer.getX() - supIzq.getX());
 
-	drawSquare(infIzq, supDer, lado);
+	drawSquare(supIzq, lado);
 }
 
 // --------------------------------------------------- //
@@ -47,8 +50,11 @@ void Lienzo::drawCircle(Coordenada coord, double radioObjeto){
 	yCentro=floatToString(coord.getY());
 	radio=floatToString(radioObjeto);
 
-	data += "<circle cx=\"" + xCentro + "\" cy=\""+ yCentro + "\" r=\"" + radio;
-	data += "\" stroke=\"black\" stroke-width=\"0\" fill=\"black\" />" + '\n';
+	data += "<circle cx=\"" + xCentro + "\" cy=\""+ yCentro + "\" r=\"" + radio +"\" ";
+	data += "stroke=\"black\" ";
+	data += "stroke-width=\"1\" ";
+	data += "fill=\"blue\"/>";
+	data += '\n';
 }
 
 // --------------------------------------------------- //
@@ -56,7 +62,7 @@ void Lienzo::drawCircle(Coordenada coord, double radioObjeto){
 void Lienzo::saveFile(){
 	ofstream file;
 
-	data += "\n</svg>";
+	data += "</svg>";
 	
   	file.open ("draw.svg", ios::out);
   	file << data;

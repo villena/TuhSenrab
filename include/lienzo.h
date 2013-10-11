@@ -19,9 +19,9 @@ class Lienzo{
 	public:
 		Lienzo(); //Constructor por defecto.
 
-		void drawSquare(Coordenada, Coordenada, float); //Añade un cuadrado dadas las coordenadas InfIzq, SupDer, y el lado.
+		void drawSquare(Coordenada, float); //Añade un cuadrado dadas las coordenadas SupIzq, InfDer, y el lado.
 
-		void drawSquare(Coordenada, Coordenada); //Añade un cuadrado dadas las coordenadas InfIzq y SupDer.
+		void drawSquare(Coordenada, Coordenada); //Añade un cuadrado dadas las coordenadas SupIzq y InfDer.
 
 		void drawCircle(Coordenada, double); //Añade un circulo dados su centro y radio.
 

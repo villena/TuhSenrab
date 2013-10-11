@@ -4,7 +4,7 @@
 
 //#define COORD
 //#define CUERPO
-//#define BHNODE
+#define BHNODE
 #define LIENZO
 
 using namespace std;
@@ -113,8 +113,8 @@ int main(void){
 	//Prueba sobre bhnode.
 	cout << endl << "TEST DE BHNODE" << endl;
 
-	Coordenada coordA(0, 0);
-	Coordenada coordB(5, 5);
+	Coordenada coordA(0, 5);
+	Coordenada coordB(5, 0);
 
 	BHNode nodo0;
 	BHNode nodo1(coordA, coordB, &nodo0);
@@ -122,8 +122,8 @@ int main(void){
 	cout << "Constructor por defecto." << endl;
 	cout << "Masa: " << nodo0.getMasa() << endl;
 	cout << "CentroMasa: " << nodo0.getCentroMasa() << endl;
-	cout << "esqInfIzq: " << nodo0.getInfIzq() << endl;
-	cout << "esqSupDer: " << nodo0.getSupDer() << endl;
+	cout << "esqSupIzq: " << nodo0.getSupIzq() << endl;
+	cout << "esqInfDer: " << nodo0.getInfDer() << endl;
 	cout << "CentroCuad: " << nodo0.getCentroCuad() << endl;
 	cout << "Lado: " << nodo0.getLado() << endl;
 	cout << "Cuerpos: " << nodo0.getNumCuerpos() << endl;
@@ -134,8 +134,8 @@ int main(void){
 	cout << endl << "Constructor con parámetros." << endl;
 	cout << "Masa: " << nodo1.getMasa() << endl;
 	cout << "CentroMasa: " << nodo1.getCentroMasa() << endl;
-	cout << "esqInfIzq: " << nodo1.getInfIzq() << endl;
-	cout << "esqSupDer: " << nodo1.getSupDer() << endl;
+	cout << "esqSupIzq: " << nodo1.getSupIzq() << endl;
+	cout << "esqInfDer: " << nodo1.getInfDer() << endl;
 	cout << "CentroCuad: " << nodo1.getCentroCuad() << endl;
 	cout << "Lado: " << nodo1.getLado() << endl;
 	cout << "Cuerpos: " << nodo1.getNumCuerpos() << endl;
@@ -150,8 +150,8 @@ int main(void){
 	cout << endl << "Constructor con parámetros, padre NULL." << endl;
 	cout << "Masa: " << nodoInit.getMasa() << endl;
 	cout << "CentroMasa: " << nodoInit.getCentroMasa() << endl;
-	cout << "esqInfIzq: " << nodoInit.getInfIzq() << endl;
-	cout << "esqSupDer: " << nodoInit.getSupDer() << endl;
+	cout << "esqSupIzq: " << nodoInit.getSupIzq() << endl;
+	cout << "esqInfDer: " << nodoInit.getInfDer() << endl;
 	cout << "CentroCuad: " << nodoInit.getCentroCuad() << endl;
 	cout << "Lado: " << nodoInit.getLado() << endl;
 	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
@@ -257,12 +257,14 @@ int main(void){
 
 	Lienzo lienzo1;
 	Coordenada l0;
-	Coordenada l1(5, 5);
-	Coordenada l2(2.5, 2.5);
-	Coordenada l3(10, 10);
-	BHNode n0(l0, l3, NULL);
+	Coordenada l1(125, 125);
+	Coordenada l2(250, 250);
+	Coordenada l3(500, 500);
 
-	lienzo1.drawSquare(n0.getInfIzq(), n0.getSupDer(), n0.getLado());
+	lienzo1.drawSquare(l0, l3);
+	lienzo1.drawSquare(l0, l2);
+	lienzo1.drawSquare(l0, l1);
+	lienzo1.drawCircle(l1, 5);
 
 	lienzo1.saveFile();
 

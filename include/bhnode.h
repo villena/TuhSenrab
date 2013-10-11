@@ -17,8 +17,8 @@ class BHNode{
 	private:
 		double masa; //Masa en el cuadrante.
 		Coordenada centroMasa; //Centro de masa en el cuadrante.
-		Coordenada esqInfIzq; //Coordenada de la esquina inferior izquierda del cuadrante.
-		Coordenada esqSupDer; //Coordenada de la esquina superior derecha del cuadrante.
+		Coordenada esqSupIzq; //Coordenada de la esquina superior izquierda del cuadrante.
+		Coordenada esqInfDer; //Coordenada de la esquina inferior derecha del cuadrante.
 		Coordenada centroCuadrante; //Centro del cuadrante.
 		float lado; //Lado del cuadrado.
 		unsigned int numCuerpos; //Número de cuerpos dentro del cuadrante.
@@ -42,9 +42,9 @@ class BHNode{
 
 		Coordenada getCentroMasa() const; //Getter del centro de masas.
 
-		Coordenada getInfIzq() const; //Getter de la coordenada inferior izquierda.
+		Coordenada getSupIzq() const; //Getter de la coordenada superior izquierda.
 
-		Coordenada getSupDer() const; //Getter de la coordenada superior derecha.
+		Coordenada getInfDer() const; //Getter de la coordenada inferior derecha.
 
 		Coordenada getCentroCuad() const; //Getter del centro del cuadrante.
 
