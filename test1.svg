@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-<rect x="0" y="0" width="500" height="500" fill="transparent" stroke="green" stroke-width="1"/>
-<rect x="0" y="0" width="250" height="250" fill="transparent" stroke="green" stroke-width="1"/>
-<rect x="0" y="0" width="125" height="125" fill="transparent" stroke="green" stroke-width="1"/>
-<circle cx="125" cy="125" r="5" stroke="black" stroke-width="1" fill="blue"/>
-</svg>
