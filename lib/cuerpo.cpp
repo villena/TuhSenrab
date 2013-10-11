@@ -83,3 +83,20 @@ ostream & operator<<(ostream &op, const Cuerpo &cuerpo){
 
 	return op;
 }
+
+// --------------------------------------------------- //
+
+bool Cuerpo::operator==(const Cuerpo &c)
+{
+	bool temp;
+	temp=(posicion.getX() == c.posicion.getX() && posicion.getY() == c.posicion.getY() && masa == c.masa) ? true : false;
+
+	return temp;
+}
+
+// --------------------------------------------------- //
+
+bool Cuerpo::operator!=(const Cuerpo &c)
+{
+	return !(*this==c);
+}

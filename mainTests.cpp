@@ -3,8 +3,8 @@
 #include "lienzo.h"
 
 //#define COORD
-//#define CUERPO
-#define BHNODE
+#define CUERPO
+//#define BHNODE
 #define LIENZO
 
 using namespace std;
@@ -102,6 +102,26 @@ int main(void){
 	cout << "Destructor." << endl;
 	cuerpo3.~Cuerpo();
 	cout << cuerpo3 << endl;
+
+	//Prueba sobrecarga operador igualdad
+
+	Cuerpo cuerpo4(1, 2, 3.0);
+	Cuerpo cuerpo5(cuerpo4);
+	Cuerpo cuerpo6(2, 1, 3.0);
+
+	cout zz "Operador de igualdad." << endl;
+
+	cout << "Cuerpo 4: " << endl;
+	cout << cuerpo4 << endl;
+	cout << "Cuerpo 5: " << endl;
+	cout << cuerpo5 << endl;
+	cout << "Cuerpo 6: " << endl;
+	cout << cuerpo6 << endl;
+
+	cout << "cuerpo4 == cuerpo5: " << (cuerpo4 == cuerpo5) << endl;
+	cout << "cuerpo4 == cuerpo6: " << (cuerpo4 == cuerpo6) << endl;
+	cout << "cuerpo4 != cuerpo5: " << (cuerpo4 != cuerpo5) << endl;
+	cout << "cuerpo4 != cuerpo6: " << (cuerpo4 != cuerpo6) << endl;
 
 	#endif
 

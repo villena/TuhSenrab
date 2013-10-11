@@ -47,15 +47,32 @@ void GeneradorCuerpos::generador() {
 	float maxX = esquina2.getX();
 	float minY = esquina1.getY();
 	float maxY = esquina2.getY();
-	srand(0);
+	srand(time(NULL));//srand(0);
+
+	bool existe = false;
 
 	for (int i = 0; i<numCuerpos; i++)
 	{
 		float x = minX + fmod(rand(),(maxX - minX + 1));
 		float y = minY + fmod(rand(),(maxY - minY + 1));
+		existe = false;
 
 		Cuerpo body(x, y, masa);
 
-		cuerpos.push_back(body);
+
+		std::vector< Cuerpo >::iterator r ;
+
+    	for( r = cuerpos.begin() ; r != cuerpos.end() ; ++r )
+    	{
+    		if(*r == body)
+    		{
+    			existe = true;
+    			i--; //Para que no se deje cuerpos sin insertar
+    		}
+    	}
+
+		
+    	if(!existe)
+			cuerpos.push_back(body);
 	}
 }
