@@ -131,8 +131,8 @@ int main(void){
 	//Prueba sobre bhnode.
 	cout << endl << "TEST DE BHNODE" << endl;
 
-	Coordenada coordA(0, 500);
-	Coordenada coordB(500, 0);
+	Coordenada coordA(0, 0);
+	Coordenada coordB(500, 500);
 
 	BHNode nodo0;
 	BHNode nodo1(coordA, coordB, &nodo0);
@@ -179,7 +179,7 @@ int main(void){
 
 	Cuerpo cuerpoA(100, 100, 10.0);
 
-	/*cout << endl << "Intentamos introducir el cuerpo " << cuerpoA << endl;
+	cout << endl << "Intentamos introducir el cuerpo " << cuerpoA << endl;
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoA) << endl;
 	cout << "Cuerpos: " << nodoInit.getNumCuerpos() << endl;
 	cout << nodoInit << endl;
@@ -217,7 +217,7 @@ int main(void){
 	cout << nodoInit << endl;
 
 
-	Cuerpo cuerpoF(300, 450, 1.0);
+	Cuerpo cuerpoF(300, 450, 10.0);
 
 	cout << endl << "Intentamos introducir el cuerpo " << cuerpoF << endl;
 	cout << "Logrado?: " << nodoInit.introducirCuerpo(cuerpoF) << endl;
@@ -265,7 +265,7 @@ int main(void){
 
 	cout << endl << "Prueba fuerza con G" << endl;
 	cuerpoG.setFuerza(nodoInit.calculaFuerza(cuerpoG));
-	cout << "Fuerza " << cuerpoG.getFuerza()<<endl;*/
+	cout << "Fuerza " << cuerpoG.getFuerza()<<endl;
 
 	// - - - - - - - - - DIBUJADO - - - - - - - - - // 
 

@@ -236,13 +236,13 @@ BHNode * BHNode::obtenerCuadrante(Coordenada coordCuerpo){
 	float xCentro=centroCuadrante.getX(), yCentro=centroCuadrante.getY();
 	BHNode* aux=NULL;
 
-	if(compX<=xCentro && compY>=yCentro) //Noroeste
+	if(compX<=xCentro && compY<=yCentro) //Noroeste
 		aux=hijosCuadrante[0];
-	else if(compX>=xCentro && compY>=yCentro) //Noreste
+	else if(compX>=xCentro && compY<=yCentro) //Noreste
 		aux=hijosCuadrante[1];
-	else if(compX<=xCentro && compY<=yCentro) //Suroeste
+	else if(compX<=xCentro && compY>=yCentro) //Suroeste
 		aux=hijosCuadrante[2];
-	else if(compX>=xCentro && compY<=yCentro) //Sureste
+	else if(compX>=xCentro && compY>=yCentro) //Sureste
 		aux=hijosCuadrante[3];
 	else //No está en este cuadrante!!!
 		aux=NULL;
@@ -254,11 +254,12 @@ BHNode * BHNode::obtenerCuadrante(Coordenada coordCuerpo){
 // --------------------------------------------------- //
 
 
-/*  _________
- * |    |    |
- * |__0_|_1__|  
- * |	|    |
- * |__2_|_3__|
+/*      X -> +
+ * 	   _________
+ * Y  |    |    |
+ * 	  |__0_|_1__|  
+ * +  |	   |    |
+ * 	  |__2_|_3__|
  */
 
 void BHNode::expandirNodo(){
@@ -330,7 +331,7 @@ void BHNode::calculaCentro(Coordenada &coord){
 	float compX, compY;
 
 	compX=(esqInfDer.getX()-esqSupIzq.getX())/2+esqSupIzq.getX();
-	compY=(esqSupIzq.getY()-esqInfDer.getY())/2+esqInfDer.getY();
+	compY=(esqInfDer.getY()-esqSupIzq.getY())/2+esqSupIzq.getY();
 
 	coord=Coordenada(compX, compY);
 }
@@ -342,7 +343,7 @@ bool BHNode::estaDentro(Coordenada coord){
 	float xCord=coord.getX(), yCord=coord.getY();
 	
 	if(xCord>=esqSupIzq.getX() && xCord<=esqInfDer.getX() &&
-		yCord<=esqSupIzq.getY() && yCord>=esqInfDer.getY())
+		yCord>=esqSupIzq.getY() && yCord<=esqInfDer.getY())
 		contenido=true;
 
 	return contenido;

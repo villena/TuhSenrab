@@ -1,3 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-<rect x="0" y="500" width="500" height="500" fill="transparent" stroke="green" stroke-width="1"/>
+<rect x="0" y="0" width="250" height="250" fill="transparent" stroke="green" stroke-width="1"/>
+<circle cx="100" cy="100" r="10" stroke="black" stroke-width="1" fill="blue"/>
+<rect x="250" y="0" width="250" height="250" fill="transparent" stroke="green" stroke-width="1"/>
+<circle cx="400" cy="100" r="10" stroke="black" stroke-width="1" fill="blue"/>
+<rect x="0" y="250" width="250" height="250" fill="transparent" stroke="green" stroke-width="1"/>
+<circle cx="100" cy="400" r="10" stroke="black" stroke-width="1" fill="blue"/>
+<rect x="250" y="250" width="125" height="125" fill="transparent" stroke="green" stroke-width="1"/>
+<circle cx="300" cy="300" r="10" stroke="black" stroke-width="1" fill="blue"/>
+<rect x="375" y="250" width="125" height="125" fill="transparent" stroke="green" stroke-width="1"/>
+<rect x="250" y="375" width="125" height="125" fill="transparent" stroke="green" stroke-width="1"/>
+<circle cx="300" cy="450" r="10" stroke="black" stroke-width="1" fill="blue"/>
+<rect x="375" y="375" width="62.5" height="62.5" fill="transparent" stroke="green" stroke-width="1"/>
+<circle cx="400" cy="400" r="10" stroke="black" stroke-width="1" fill="blue"/>
+<rect x="437.5" y="375" width="62.5" height="62.5" fill="transparent" stroke="green" stroke-width="1"/>
+<rect x="375" y="437.5" width="62.5" height="62.5" fill="transparent" stroke="green" stroke-width="1"/>
+<rect x="437.5" y="437.5" width="62.5" height="62.5" fill="transparent" stroke="green" stroke-width="1"/>
+<circle cx="450" cy="450" r="10" stroke="black" stroke-width="1" fill="blue"/>
 </svg>
