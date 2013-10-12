@@ -46,8 +46,16 @@ void GeneradorCuerpos::generador() {
 
 	for (int i = 0; insertados<numCuerpos; i++)
 	{
-		float x = minX + fmod(rand(),(maxX - minX));
-		float y = minY + fmod(rand(),(maxY - minY));
+		float x=0.0, y=0.0;
+
+		if((maxX-minX)/numCuerpos>0.15){
+			x=minX + fmod(rand(),(maxX - minX));
+			y = minY + fmod(rand(),(maxY - minY));
+		}
+		else{ //Este genera coordenadas con decimales.
+			x=minX + (float)rand()/((float)RAND_MAX/(maxX-minX));
+			y=minY + (float)rand()/((float)RAND_MAX/(maxY-minY));
+		}
 
 		ostringstream stream;
 		stream << x << ' ' << y << ' ' << masa;

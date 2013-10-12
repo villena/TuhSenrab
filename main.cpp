@@ -142,13 +142,14 @@ int main(int argc, const char* argv[]){
 	for(int i=0; i<cantidad; i++)
 		nodoInit->calculaFuerza(*cuerpos[i]);
 
-	cout << "Fuerza calculada. Pasamos a dibujar lienzo." << endl;
+	cout << "Fuerza calculada." << endl;
 
+	/*cout << "Pasamos a dibujar lienzo." << endl;
 	Lienzo lienzo;
 	nodoInit->generaSVG(lienzo);
 	lienzo.saveFile("resultadoMain.svg");
 
-	cout << "Lienzo generado y guardado como resultadoMain.svg" << endl;
+	cout << "Lienzo generado y guardado como resultadoMain.svg" << endl;*/
 
 	return 0;
 }
