@@ -6,7 +6,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
-#include <vector>
+#include <set>
+#include <sstream>
 #include <cmath>
 #include "cuerpo.h"
 
@@ -35,7 +36,7 @@ class GeneradorCuerpos
 		Coordenada esquina2;
 		double masa;
 		int numCuerpos;
-		std::vector<Cuerpo> cuerpos;
+		set<string> cuerpos;
 };
 
 #endif

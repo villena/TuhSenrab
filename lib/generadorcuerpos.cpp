@@ -29,12 +29,8 @@ void GeneradorCuerpos::imprimeFichero(const string &file) {
 
 		fo << esquina1.getX() << " " << esquina1.getY() << " " << esquina2.getX() << " " << esquina2.getY() << endl;
 
-		for (int i=0; i < numCuerpos; i++)
-		{
-			Coordenada c = cuerpos[i].getPosicion();
-
-			fo << c.getX() << " " << c.getY() << " " << cuerpos[i].getMasa() << endl;
-		}
+		for(set<string>::iterator it=cuerpos.begin(); it!=cuerpos.end(); it++)
+			fo << *it << endl;
 
 		fo.close();
 	}
@@ -46,31 +42,17 @@ void GeneradorCuerpos::generador() {
 	float minY = esquina1.getY();
 	float maxY = esquina2.getY();
 	srand(time(NULL));//srand(0);
+	int insertados=0;
 
-	bool existe = false;
-
-	for (int i = 0; i<numCuerpos; i++)
+	for (int i = 0; insertados<numCuerpos; i++)
 	{
 		float x = minX + fmod(rand(),(maxX - minX + 1));
 		float y = minY + fmod(rand(),(maxY - minY + 1));
-		existe = false;
 
-		Cuerpo body(x, y, masa);
+		ostringstream stream;
+		stream << x << ' ' << y << ' ' << masa;
 
-
-		std::vector< Cuerpo >::iterator r ;
-
-    	for( r = cuerpos.begin() ; r != cuerpos.end() ; ++r )
-    	{
-    		if(*r == body)
-    		{
-    			existe = true;
-    			i--; //Para que no se deje cuerpos sin insertar
-    		}
-    	}
-
-		
-    	if(!existe)
-			cuerpos.push_back(body);
+		if(cuerpos.insert(stream.str()).second) //Insertado correctamente.
+			insertados++;
 	}
 }
