@@ -5,9 +5,9 @@ using namespace std;
 int main(void) {
 
 	Coordenada coord1(0, 0);
-	Coordenada coord2(40, 50);
+	Coordenada coord2(500, 500);
 
-	GeneradorCuerpos generador(coord1, coord2, 1000, 50);
+	GeneradorCuerpos generador(coord1, coord2, 1, 50000);
 
-	generador.imprimeFichero("Prueba1.txt");
+	generador.imprimeFichero("ficherosCuerpos/Prueba1.txt");
 }

@@ -36,8 +36,6 @@ void GeneradorCuerpos::imprimeFichero(const string &file) {
 			fo << c.getX() << " " << c.getY() << " " << cuerpos[i].getMasa() << endl;
 		}
 
-		fo << endl;
-
 		fo.close();
 	}
 }
