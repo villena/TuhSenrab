@@ -46,8 +46,8 @@ void GeneradorCuerpos::generador() {
 
 	for (int i = 0; insertados<numCuerpos; i++)
 	{
-		float x = minX + fmod(rand(),(maxX - minX + 1));
-		float y = minY + fmod(rand(),(maxY - minY + 1));
+		float x = minX + fmod(rand(),(maxX - minX));
+		float y = minY + fmod(rand(),(maxY - minY));
 
 		ostringstream stream;
 		stream << x << ' ' << y << ' ' << masa;
