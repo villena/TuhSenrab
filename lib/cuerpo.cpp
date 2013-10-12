@@ -53,6 +53,24 @@ Cuerpo::~Cuerpo(){
 
 // --------------------------------------------------- //
 
+bool Cuerpo::operator==(const Cuerpo &c)
+{
+	bool temp;
+	temp=(posicion.getX() == c.posicion.getX() && 
+		posicion.getY() == c.posicion.getY() && masa == c.masa) ? true : false;
+
+	return temp;
+}
+
+// --------------------------------------------------- //
+
+bool Cuerpo::operator!=(const Cuerpo &c)
+{
+	return !(*this==c);
+}
+
+// --------------------------------------------------- //
+
 Coordenada Cuerpo::getPosicion() const{
 	return posicion;
 }
@@ -82,21 +100,4 @@ ostream & operator<<(ostream &op, const Cuerpo &cuerpo){
 	op << "[" << cuerpo.getPosicion() << ", " << cuerpo.getMasa() << "]";
 
 	return op;
-}
-
-// --------------------------------------------------- //
-
-bool Cuerpo::operator==(const Cuerpo &c)
-{
-	bool temp;
-	temp=(posicion.getX() == c.posicion.getX() && posicion.getY() == c.posicion.getY() && masa == c.masa) ? true : false;
-
-	return temp;
-}
-
-// --------------------------------------------------- //
-
-bool Cuerpo::operator!=(const Cuerpo &c)
-{
-	return !(*this==c);
 }

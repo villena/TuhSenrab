@@ -27,6 +27,10 @@ class Cuerpo{
 
 		~Cuerpo(); //Destructor.
 
+		bool operator==(const Cuerpo &); //Sobrecarga del operador de igualdad
+
+		bool operator!=(const Cuerpo &); //Sobrecarga del operador de desigualdad
+
 		Coordenada getPosicion() const; //Getter de la coord con la posición.
 
 		double getMasa() const; //Getter de la masa del cuerpo.
@@ -36,10 +40,6 @@ class Cuerpo{
 		void setFuerza(double); //Setter de la fuerza ejercida sobre el cuerpo.
 
 		friend ostream & operator<<(ostream &, const Cuerpo &); //Sobrecarga operador salida.
-
-		bool operator==(const Cuerpo &); //Sobrecarga del operador de igualdad
-
-		bool operator!=(const Cuerpo &); //Sobrecarga del operador de desigualdad
 };
 
 #endif
