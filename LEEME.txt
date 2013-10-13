@@ -1,10 +1,3 @@
-v3.0
+El fichero makefile compila los fuentes del programa junto con main.cpp. Main.cpp es el programa al que se le pasa el nombre del fichero que contenga la cantidad de cuerpos, las coordendas del cuadrante, y la lista de cuerpos que se van a usar. Al final de su ejecución habrá generado un fichero llamado "resultadoMain.svg" con la representación de la distribución de las masas en el cuadrante.
 
-TODO:
-- Memoria
-- Presentación
-
-Mejoras:
-- Controlar que no introduzcan cuerpos con las mismas coordenadas. Dos cuerpos físicamente no es posible que estén en la misma coordenada.
-- Representar el sentido de la fuerza
-- Cuerpos en movimiento constante -> O Acelerando!
+Para generar ficheros de cuerpos tenemos mainGenerador. Para compilarlo se puede cambiar del makefile la palabra "main" por "mainGenerador" en todas sus ocurrencias. A este programa hemos de decirle la cantidad de cuerpos a generar y el nombre del fichero donde guardarlo. Por defecto genera cuerpos en un cuadrante de coordendas (0, 0) - (5000, 5000).
