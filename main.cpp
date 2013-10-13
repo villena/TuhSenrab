@@ -140,11 +140,11 @@ int main(int argc, const char* argv[]){
 	cout << "Distribución de masas calculada. Pasamos a calcular la fuerza sobre cada cuerpo." << endl;
 
 	for(int i=0; i<cantidad; i++)
-		nodoInit->calculaFuerza(*cuerpos[i]);
+		cuerpos[i]->setFuerza(nodoInit->calculaFuerza(*cuerpos[i]));
 
 	cout << "Fuerza calculada." << endl;
 
-	//cout << *cuerpos[50000] << endl;
+	cout << *cuerpos[0] << endl;
 
 	/*cout << "Pasamos a dibujar lienzo." << endl;
 	Lienzo lienzo;
