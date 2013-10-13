@@ -5,7 +5,7 @@
 #include "cuerpo.h"
 #include "bhnode.h"
 
-const double kTHETA=0.5;
+const double kTHETA=2;
 const double kG=6.67428*pow(10, -11);
 
 using namespace std;
@@ -200,7 +200,7 @@ void BHNode::calcularDistribucionMasas(){
 
 // --------------------------------------------------- //
 
-double BHNode::calculaFuerza(const Cuerpo &cuerpo){
+double BHNode::calculaFuerza(Cuerpo &cuerpo){
 	//Si es el mismo cuerpo, no se ejerce fuerza a sí mismo.
 	//Si no tiene cuerpos, no afecta.
 	if(cuerpoInterior==&cuerpo || numCuerpos==0) 

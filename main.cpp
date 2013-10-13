@@ -144,6 +144,8 @@ int main(int argc, const char* argv[]){
 
 	cout << "Fuerza calculada." << endl;
 
+	//cout << *cuerpos[50000] << endl;
+
 	/*cout << "Pasamos a dibujar lienzo." << endl;
 	Lienzo lienzo;
 	nodoInit->generaSVG(lienzo);

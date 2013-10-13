@@ -97,7 +97,7 @@ void Cuerpo::setFuerza(double f)
 // --------------------------------------------------- //
 
 ostream & operator<<(ostream &op, const Cuerpo &cuerpo){
-	op << "[" << cuerpo.getPosicion() << ", " << cuerpo.getMasa() << "]";
+	op << "[" << cuerpo.getPosicion() << ", " << cuerpo.getMasa() << "] " << cuerpo.getFuerza();
 
 	return op;
 }

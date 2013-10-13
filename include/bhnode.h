@@ -61,7 +61,7 @@ class BHNode{
 
 		bool introducirCuerpo(Cuerpo &); //Si puede introducir el cuerpo devuelve TRUE.
 
-		double calculaFuerza(const Cuerpo &); //Calcula la fuerza que ejerce el árbol sobre el cuerpo.
+		double calculaFuerza(Cuerpo &); //Calcula la fuerza que ejerce el árbol sobre el cuerpo.
 
 		void calcularDistribucionMasas(); //Calcula la distribución de masas en el nodo.
 
