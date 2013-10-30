@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <stdlib.h>
 #include "bhnode.h"
 
 const string errorLlamada="ERROR. Llamada incorrecta: main [fichero_cuerpos]";

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include <math.h>
+#include <omp.h>
 #include "coordenada.h"
 #include "cuerpo.h"
 #include "bhnode.h"
@@ -217,9 +218,12 @@ double BHNode::calculaFuerza(const Cuerpo &cuerpo){
 		if(lado/r<kTHETA)
 			fuerza = kG*cuerpo.getMasa()*masa/pow(r, 2);
 		else{
+
+			#pragma omp parallel for		
 			for(int i=0; i<4; i++){
 				if(hijosCuadrante[i])
 					fuerza+=hijosCuadrante[i]->calculaFuerza(cuerpo);
+				
 			}
 		}
 	}
