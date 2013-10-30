@@ -6,7 +6,7 @@
 #include "cuerpo.h"
 #include "bhnode.h"
 
-const double kTHETA=0.0;
+const double kTHETA=0.5;
 const double kG=6.67428*pow(10, -11);
 
 using namespace std;
@@ -183,7 +183,7 @@ void BHNode::calcularDistribucionMasas(){
 	}
 	else{ //0 o más de uno.
 		float newX=centroMasa.getX(), newY=centroMasa.getY();
-
+		#pragma omp parallel for
 		for(int i=0; i<4; i++){
 			if(hijosCuadrante[i]){ //Si tuviese 0 hijos, no se ejecuta nada de esto.
 				hijosCuadrante[i]->calcularDistribucionMasas();

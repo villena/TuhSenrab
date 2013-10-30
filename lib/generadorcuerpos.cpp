@@ -1,4 +1,4 @@
-#import "generadorcuerpos.h"
+#include "generadorcuerpos.h"
 
 GeneradorCuerpos::GeneradorCuerpos() {
 	numCuerpos = 0;

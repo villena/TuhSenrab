@@ -130,7 +130,7 @@ int main(int argc, const char* argv[]){
 
 	cout << "Cuerpos leídos y generados. Nodo inicial creado." << endl;
 	cout << "Pasando a introducir los cuerpos." << endl;
-
+	
 	for(int i=0; i<cantidad; i++)
 		nodoInit->introducirCuerpo(*cuerpos[i]);
 
@@ -139,18 +139,18 @@ int main(int argc, const char* argv[]){
 	nodoInit->calcularDistribucionMasas();
 
 	cout << "Distribución de masas calculada. Pasamos a calcular la fuerza sobre cada cuerpo." << endl;
-
+	#pragma omp parallel for
 	for(int i=0; i<cantidad; i++)
 		cuerpos[i]->setFuerza(nodoInit->calculaFuerza(*cuerpos[i]));
 
 	cout << "Fuerza calculada." << endl;
 
-	cout << "Pasamos a dibujar lienzo." << endl;
+	/*cout << "Pasamos a dibujar lienzo." << endl;
 	Lienzo lienzo;
 	nodoInit->generaSVG(lienzo);
 	lienzo.saveFile("resultadoMain.svg");
 
 	cout << "Lienzo generado y guardado como resultadoMain.svg" << endl;
-
+	*/
 	return 0;
 }
