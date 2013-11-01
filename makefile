@@ -1,6 +1,7 @@
 .PHONY= doc clean
 
 CC=g++
+//CC=g++-mp-4.8
 OPTIONS= -g -fopenmp
 DEBUG= #-D DEBUG
 LIBDIR=lib
