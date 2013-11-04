@@ -111,6 +111,107 @@ float Coordenada::distanciaEuclidea(Coordenada otra){
 }
 
 // --------------------------------------------------- //
+/*
+Coordenada Coordenada::getSimetrica(const Coordenada &original, const int &origen, const int &destino, const int &size){
+	Coordenada simetrica(original);
+	float pivote = size/2;
+//		 ___________
+//  	|     |     |
+//  	|  ·---->1  |
+//		|__|_\|_____|
+//  	|  v  |\_   |
+//  	|  2  |  3  |
+//		|_____|_____|
+	if(origen==0){
+		switch (destino){
+			case 1:
+				simetrica.setX(pivote + fabs(pivote-original.getX()));
+				break;
+			
+			case 2:
+				simetrica.setY(pivote + fabs(pivote-original.getY()));
+				break;
+			
+			case 3:
+				simetrica.setX(pivote + fabs(pivote-original.getX()));
+				simetrica.setY(pivote + fabs(pivote-original.getY()));
+				break;
+		}
+	}
+//		 ___________
+//  	|     |     |
+//  	|  0<----·  |
+//		|_____|/_|__|
+//  	|   _/|  v  |
+//  	|  2  |  3  |
+//		|_____|_____|
+	else if(origen==1){
+		switch (destino){
+			case 0:
+				simetrica.setX(pivote - fabs(pivote-original.getX()));
+				break;
+			
+			case 2:
+				simetrica.setX(pivote - fabs(pivote-original.getX()));
+				simetrica.setY(pivote + fabs(pivote-original.getY()));
+				break;
+			
+			case 3:
+				simetrica.setY(pivote + fabs(pivote-original.getY()));
+				break;
+		}
+	}
+//		 ___________
+//  	|     |     |
+//  	|  0  | _1  |
+//		|__^__|/____|
+//  	|  | /|     |
+//  	|  ·---->3  |
+//		|_____|_____|
+	else if(origen==2){
+		switch (destino){
+			case 0:
+				simetrica.setY(pivote - fabs(pivote-original.getY()));
+				break;
+			
+			case 1:
+				simetrica.setX(pivote + fabs(pivote-original.getX()));
+				simetrica.setY(pivote - fabs(pivote-original.getY()));
+				break;
+			
+			case 3:
+				simetrica.setX(pivote + fabs(pivote-original.getX()));
+				break;
+		}
+	}
+//		 ___________
+//  	|     |     |
+//  	|  0_ |  1  |
+//		|____\|__^__|
+//  	|     |\ |  |
+//  	|  2<----·  |
+//		|_____|_____|
+	else if(origen==3){
+		switch (destino){
+			case 0:
+				simetrica.setX(pivote - fabs(pivote-original.getX()));
+				simetrica.setY(pivote - fabs(pivote-original.getY()));
+				break;
+			
+			case 1:
+				simetrica.setY(pivote - fabs(pivote-original.getY()));
+				break;
+			
+			case 2:
+			simetrica.setX(pivote - fabs(pivote-original.getX()));
+				break;
+		}
+	}
+
+	return simetrica;
+}
+*/
+// --------------------------------------------------- //
 
 ostream & operator<<(ostream &op, const Coordenada &coord){
 	op << "(" << coord.getX() << ", " << coord.getY() << ")";

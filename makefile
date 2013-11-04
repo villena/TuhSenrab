@@ -19,4 +19,4 @@ doc:
 	doxygen
 
 clean:
-	rm -f $(OBJ) 
+	rm -rf $(OBJ) main main.dSYM

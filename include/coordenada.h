@@ -39,6 +39,8 @@ class Coordenada{
 
 		float distanciaEuclidea(Coordenada); //Distancia entre dos puntos.
 
+		//Coordenada getSimetrica(const Coordenada &, const int &, const int &, const int &); //Obtiene la coordenada simetrica a la proporcionada en el cuadrante indicado
+
 		friend ostream & operator<<(ostream &, const Coordenada &); //Sobrecarga operador salida.
 };
 
