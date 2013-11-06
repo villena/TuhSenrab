@@ -219,7 +219,6 @@ double BHNode::calculaFuerza(const Cuerpo &cuerpo){
 			fuerza = kG*cuerpo.getMasa()*masa/pow(r, 2);
 		else{
 
-			#pragma omp parallel for		
 			for(int i=0; i<4; i++){
 				if(hijosCuadrante[i])
 					fuerza+=hijosCuadrante[i]->calculaFuerza(cuerpo);
