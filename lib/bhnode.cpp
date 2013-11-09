@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cassert>
 #include <math.h>
-#include <omp.h>
 #include "coordenada.h"
 #include "cuerpo.h"
 #include "bhnode.h"
@@ -183,7 +182,7 @@ void BHNode::calcularDistribucionMasas(){
 	}
 	else{ //0 o más de uno.
 		float newX=centroMasa.getX(), newY=centroMasa.getY();
-		#pragma omp parallel for
+		//#pragma omp parallel for
 		for(int i=0; i<4; i++){
 			if(hijosCuadrante[i]){ //Si tuviese 0 hijos, no se ejecuta nada de esto.
 				hijosCuadrante[i]->calcularDistribucionMasas();
@@ -218,11 +217,9 @@ double BHNode::calculaFuerza(const Cuerpo &cuerpo){
 		if(lado/r<kTHETA)
 			fuerza = kG*cuerpo.getMasa()*masa/pow(r, 2);
 		else{
-
 			for(int i=0; i<4; i++){
 				if(hijosCuadrante[i])
 					fuerza+=hijosCuadrante[i]->calculaFuerza(cuerpo);
-				
 			}
 		}
 	}

@@ -10,8 +10,6 @@ GeneradorCuerpos::GeneradorCuerpos(const Coordenada &coor1, const Coordenada &co
 	
 	masa = m;
 	numCuerpos = n;
-
-	generador();
 }
 
 GeneradorCuerpos::~GeneradorCuerpos() {
@@ -36,7 +34,7 @@ void GeneradorCuerpos::imprimeFichero(const string &file) {
 	}
 }
 
-void GeneradorCuerpos::generador() {
+void GeneradorCuerpos::generar() {
 	float minX = esquina1.getX();
 	float maxX = esquina2.getX();
 	float minY = esquina1.getY();

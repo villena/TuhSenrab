@@ -12,6 +12,6 @@ int main(int argc, const char* argv[]) {
 	Coordenada coord2(5000, 5000);
 
 	GeneradorCuerpos generador(coord1, coord2, 1, atoi(argv[1]));
-
+	generador.generar();
 	generador.imprimeFichero(argv[2]);
 }

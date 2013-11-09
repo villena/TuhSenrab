@@ -29,7 +29,7 @@ class GeneradorCuerpos
 
 		void imprimeFichero(const string &);
 
-		void generador();
+		void generar();
 
 	private:
 		Coordenada esquina1;

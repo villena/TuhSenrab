@@ -139,7 +139,8 @@ int main(int argc, const char* argv[]){
 	nodoInit->calcularDistribucionMasas();
 
 	cout << "Distribución de masas calculada. Pasamos a calcular la fuerza sobre cada cuerpo." << endl;
-	#pragma omp parallel for
+
+	//#pragma omp parallel for
 	for(int i=0; i<cantidad; i++)
 		cuerpos[i]->setFuerza(nodoInit->calculaFuerza(*cuerpos[i]));
 
