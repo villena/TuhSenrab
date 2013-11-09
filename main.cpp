@@ -7,7 +7,7 @@
  * de cuerpos con sus componentes X e Y junto a la masa.							 *
  * Además, se genera un archvio SVG con la situación final del árbol.				 *
  * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * ** * * * * * * * * * * */
-
+#include <ctime>
 #include <iostream>
 #include <fstream>
 #include <cassert>
@@ -123,26 +123,44 @@ int main(int argc, const char* argv[]){
 	string fichero=argv[1];
 	Cuerpo** cuerpos;
 	BHNode* nodoInit=NULL;
+	long double tAntes=0, tDespues=0;
 
+	srand(time(NULL));
+	tAntes=clock();
 	cuerpos=leerCuerpos(nodoInit, cantidad, fichero);
+	tDespues=clock();
+
+	cout << "Tiempo lectura cuerpos: " << tDespues-tAntes << endl;
 
 	assert(cuerpos!=NULL & nodoInit!=NULL);
 
 	cout << "Cuerpos leídos y generados. Nodo inicial creado." << endl;
 	cout << "Pasando a introducir los cuerpos." << endl;
 	
+	tAntes=clock();
 	for(int i=0; i<cantidad; i++)
 		nodoInit->introducirCuerpo(*cuerpos[i]);
+	tDespues=clock();
+
+	cout << "Tiempo introducir cuerpos: " << tDespues-tAntes << endl;
 
 	cout << "Cuerpos introducidos. Pasamos a calcular la distribución de masas." << endl;
 
+	tAntes=clock();
 	nodoInit->calcularDistribucionMasas();
+	tDespues=clock();
+
+	cout << "Tiempo distribución masas: " << tDespues-tAntes << endl;
 
 	cout << "Distribución de masas calculada. Pasamos a calcular la fuerza sobre cada cuerpo." << endl;
 
+	tAntes=clock();
 	//#pragma omp parallel for
 	for(int i=0; i<cantidad; i++)
 		cuerpos[i]->setFuerza(nodoInit->calculaFuerza(*cuerpos[i]));
+	tDespues=clock();
+
+	cout << "Tiempo fuerza cuerpos: " << tDespues-tAntes << endl;
 
 	cout << "Fuerza calculada." << endl;
 
