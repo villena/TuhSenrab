@@ -9,7 +9,7 @@ int main(int argc, const char* argv[]) {
 	}
 
 	Coordenada coord1(0, 0);
-	Coordenada coord2(5000, 5000);
+	Coordenada coord2(500, 500);
 
 	GeneradorCuerpos generador(coord1, coord2, 1, atoi(argv[1]));
 	generador.generar();

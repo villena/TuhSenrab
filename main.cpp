@@ -133,15 +133,16 @@ int main(int argc, const char* argv[]){
 	string fichero=argv[1];
 	Cuerpo** cuerpos;
 	BHNode* nodoInit=NULL;
-	long double tAntes=0, tDespues=0;
-	long double tiemposLectura[kRepeticiones], tiemposArbol[kRepeticiones], tiemposMasas[kRepeticiones], tiemposFuerza[kRepeticiones];
+	long double tAntes=0, tDespues=0, tAntesGeneral=0, tDespuesGeneral=0;
+	long double tiemposLectura[kRepeticiones], tiemposArbol[kRepeticiones], tiemposMasas[kRepeticiones], tiemposFuerza[kRepeticiones], tiemposGeneral[kRepeticiones];
 
 	for(int i=0; i<kRepeticiones; i++){
-		tiemposLectura[i]=tiemposArbol[i]=tiemposMasas[i]=tiemposFuerza[i]=0;
+		tiemposLectura[i]=tiemposArbol[i]=tiemposMasas[i]=tiemposFuerza[i]=tiemposGeneral[i]=0;
 	}
 
 	for(int k=0; k<kRepeticiones; k++){
 		cout << "================ Iteración " << k << " ================" << endl;
+		tAntesGeneral=clock();
 
 		long double tiempo=0;
 
@@ -182,6 +183,10 @@ int main(int argc, const char* argv[]){
 		tiemposFuerza[k]=tiempo;
 
 		cout << "Fuerza calculada." << endl;
+
+		tDespuesGeneral=clock();
+		tiempo=tDespuesGeneral-tAntesGeneral;
+		tiemposGeneral[k]=tiempo;
 	}
 
 	cout << "================ TIEMPOS ================" << endl;
@@ -189,6 +194,7 @@ int main(int argc, const char* argv[]){
 	cout << "Tiempo introducir cuerpos: " << average(tiemposArbol) << endl;
 	cout << "Tiempo distribución masas: " << average(tiemposMasas) << endl;
 	cout << "Tiempo fuerza cuerpos: " << average(tiemposFuerza) << endl;
+	cout << "Tiempo general: " << average(tiemposGeneral) << endl;
 
 	/*cout << "Pasamos a dibujar lienzo." << endl;
 	Lienzo lienzo;
