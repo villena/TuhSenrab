@@ -7,7 +7,7 @@
  * de cuerpos con sus componentes X e Y junto a la masa.							 *
  * Además, se genera un archvio SVG con la situación final del árbol.				 *
  * * * * * * * * * * * * * * * ** * * * * * * * * * * * * * * ** * * * * * * * * * * */
-#include <ctime>
+#include <sys/resource.h>
 #include <iostream>
 #include <fstream>
 #include <cassert>
@@ -17,6 +17,12 @@
 const int kRepeticiones=10;
 const string errorLlamada="ERROR. Llamada incorrecta: main [fichero_cuerpos]";
 const string errorLecturaFichero="ERROR. No fue posible abrir el archivo: ";
+
+long double fTiempo(){
+	struct rusage usage;
+	getrusage(RUSAGE_SELF,&usage);
+	return ((long double) usage.ru_utime.tv_sec + (long double) usage.ru_utime.tv_usec/1e9);
+}
 
 long double average(long double tiempos[]){
 	long double avg=0;
@@ -142,13 +148,13 @@ int main(int argc, const char* argv[]){
 
 	for(int k=0; k<kRepeticiones; k++){
 		cout << "================ Iteración " << k << " ================" << endl;
-		tAntesGeneral=clock();
+		tAntesGeneral=fTiempo();
 
 		long double tiempo=0;
 
-		tAntes=clock();
+		tAntes=fTiempo();
 		cuerpos=leerCuerpos(nodoInit, cantidad, fichero);
-		tDespues=clock();
+		tDespues=fTiempo();
 		tiempo=tDespues-tAntes;
 		tiemposLectura[k]=tiempo;
 
@@ -157,34 +163,34 @@ int main(int argc, const char* argv[]){
 		cout << "Cuerpos leídos y generados. Nodo inicial creado." << endl;
 		cout << "Pasando a introducir los cuerpos." << endl;
 		
-		tAntes=clock();
+		tAntes=fTiempo();
 		for(int i=0; i<cantidad; i++)
 			nodoInit->introducirCuerpo(*cuerpos[i]);
-		tDespues=clock();
+		tDespues=fTiempo();
 		tiempo=tDespues-tAntes;
 		tiemposArbol[k]=tiempo;
 
 		cout << "Cuerpos introducidos. Pasamos a calcular la distribución de masas." << endl;
 
-		tAntes=clock();
+		tAntes=fTiempo();
 		nodoInit->calcularDistribucionMasas();
-		tDespues=clock();
+		tDespues=fTiempo();
 		tiempo=tDespues-tAntes;
 		tiemposMasas[k]=tiempo;
 
 		cout << "Distribución de masas calculada. Pasamos a calcular la fuerza sobre cada cuerpo." << endl;
 
-		tAntes=clock();
+		tAntes=fTiempo();
 		//#pragma omp parallel for
 		for(int i=0; i<cantidad; i++)
 			cuerpos[i]->setFuerza(nodoInit->calculaFuerza(*cuerpos[i]));
-		tDespues=clock();
+		tDespues=fTiempo();
 		tiempo=tDespues-tAntes;
 		tiemposFuerza[k]=tiempo;
 
 		cout << "Fuerza calculada." << endl;
 
-		tDespuesGeneral=clock();
+		tDespuesGeneral=fTiempo();
 		tiempo=tDespuesGeneral-tAntesGeneral;
 		tiemposGeneral[k]=tiempo;
 	}
