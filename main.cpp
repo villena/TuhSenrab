@@ -14,8 +14,18 @@
 #include <stdlib.h>
 #include "bhnode.h"
 
+const int kRepeticiones=10;
 const string errorLlamada="ERROR. Llamada incorrecta: main [fichero_cuerpos]";
 const string errorLecturaFichero="ERROR. No fue posible abrir el archivo: ";
+
+long double average(long double tiempos[]){
+	long double avg=0;
+
+	for(int i=0; i<kRepeticiones; i++)
+		avg+=tiempos[i];
+
+	return avg/kRepeticiones;
+}
 
 Cuerpo** leerCuerpos(BHNode *&nodo, int &cantidad, const string nombreFichero){
 	ifstream fEntrada;
@@ -124,45 +134,61 @@ int main(int argc, const char* argv[]){
 	Cuerpo** cuerpos;
 	BHNode* nodoInit=NULL;
 	long double tAntes=0, tDespues=0;
+	long double tiemposLectura[kRepeticiones], tiemposArbol[kRepeticiones], tiemposMasas[kRepeticiones], tiemposFuerza[kRepeticiones];
 
-	srand(time(NULL));
-	tAntes=clock();
-	cuerpos=leerCuerpos(nodoInit, cantidad, fichero);
-	tDespues=clock();
+	for(int i=0; i<kRepeticiones; i++){
+		tiemposLectura[i]=tiemposArbol[i]=tiemposMasas[i]=tiemposFuerza[i]=0;
+	}
 
-	cout << "Tiempo lectura cuerpos: " << tDespues-tAntes << endl;
+	for(int k=0; k<kRepeticiones; k++){
+		cout << "================ Iteración " << k << " ================" << endl;
 
-	assert(cuerpos!=NULL & nodoInit!=NULL);
+		long double tiempo=0;
 
-	cout << "Cuerpos leídos y generados. Nodo inicial creado." << endl;
-	cout << "Pasando a introducir los cuerpos." << endl;
-	
-	tAntes=clock();
-	for(int i=0; i<cantidad; i++)
-		nodoInit->introducirCuerpo(*cuerpos[i]);
-	tDespues=clock();
+		tAntes=clock();
+		cuerpos=leerCuerpos(nodoInit, cantidad, fichero);
+		tDespues=clock();
+		tiempo=tDespues-tAntes;
+		tiemposLectura[k]=tiempo;
 
-	cout << "Tiempo introducir cuerpos: " << tDespues-tAntes << endl;
+		assert(cuerpos!=NULL & nodoInit!=NULL);
 
-	cout << "Cuerpos introducidos. Pasamos a calcular la distribución de masas." << endl;
+		cout << "Cuerpos leídos y generados. Nodo inicial creado." << endl;
+		cout << "Pasando a introducir los cuerpos." << endl;
+		
+		tAntes=clock();
+		for(int i=0; i<cantidad; i++)
+			nodoInit->introducirCuerpo(*cuerpos[i]);
+		tDespues=clock();
+		tiempo=tDespues-tAntes;
+		tiemposArbol[k]=tiempo;
 
-	tAntes=clock();
-	nodoInit->calcularDistribucionMasas();
-	tDespues=clock();
+		cout << "Cuerpos introducidos. Pasamos a calcular la distribución de masas." << endl;
 
-	cout << "Tiempo distribución masas: " << tDespues-tAntes << endl;
+		tAntes=clock();
+		nodoInit->calcularDistribucionMasas();
+		tDespues=clock();
+		tiempo=tDespues-tAntes;
+		tiemposMasas[k]=tiempo;
 
-	cout << "Distribución de masas calculada. Pasamos a calcular la fuerza sobre cada cuerpo." << endl;
+		cout << "Distribución de masas calculada. Pasamos a calcular la fuerza sobre cada cuerpo." << endl;
 
-	tAntes=clock();
-	//#pragma omp parallel for
-	for(int i=0; i<cantidad; i++)
-		cuerpos[i]->setFuerza(nodoInit->calculaFuerza(*cuerpos[i]));
-	tDespues=clock();
+		tAntes=clock();
+		//#pragma omp parallel for
+		for(int i=0; i<cantidad; i++)
+			cuerpos[i]->setFuerza(nodoInit->calculaFuerza(*cuerpos[i]));
+		tDespues=clock();
+		tiempo=tDespues-tAntes;
+		tiemposFuerza[k]=tiempo;
 
-	cout << "Tiempo fuerza cuerpos: " << tDespues-tAntes << endl;
+		cout << "Fuerza calculada." << endl;
+	}
 
-	cout << "Fuerza calculada." << endl;
+	cout << "================ TIEMPOS ================" << endl;
+	cout << "Tiempo lectura cuerpos: " << average(tiemposLectura) << endl;
+	cout << "Tiempo introducir cuerpos: " << average(tiemposArbol) << endl;
+	cout << "Tiempo distribución masas: " << average(tiemposMasas) << endl;
+	cout << "Tiempo fuerza cuerpos: " << average(tiemposFuerza) << endl;
 
 	/*cout << "Pasamos a dibujar lienzo." << endl;
 	Lienzo lienzo;
