@@ -193,6 +193,18 @@ int main(int argc, const char* argv[]){
 		tDespuesGeneral=fTiempo();
 		tiempo=tDespuesGeneral-tAntesGeneral;
 		tiemposGeneral[k]=tiempo;
+
+		for(int i=0; i<cantidad; i++){
+			cuerpos[i]->~Cuerpo();
+			delete cuerpos[i];
+			cuerpos[i]=NULL;
+		}
+		delete[] cuerpos;
+		cuerpos=NULL;
+
+		nodoInit->~BHNode();
+		delete nodoInit;
+		nodoInit=NULL;
 	}
 
 	cout << "================ TIEMPOS ================" << endl;

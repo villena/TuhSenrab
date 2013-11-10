@@ -58,8 +58,11 @@ BHNode::~BHNode(){
 	cuerpoInterior=NULL;
 
 	for(int i=0; i<4; i++){
-		if(hijosCuadrante[i]!=NULL)
+		if(hijosCuadrante[i]!=NULL){
 			hijosCuadrante[i]->~BHNode();
+			delete hijosCuadrante[i];
+			hijosCuadrante[i]=NULL;
+		}
 	}
 }
 
